@@ -6,6 +6,8 @@ import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 
+import { handleLoginApi } from "../../services/userService"
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class Login extends Component {
     });
   };
 
-  handleLogin = () => {
+  handleLogin = async () => {
     console.log(
       "userName: ",
       this.state.userName,
@@ -38,6 +40,12 @@ class Login extends Component {
       this.state.password
     );
     console.log("all state: ", this.state);
+    try {
+      await handleLoginApi(this.state.userName, this.state.password)
+
+    } catch (e) {
+      console.log(e)
+    }
   };
 
   handleShowHidePass = () => {
