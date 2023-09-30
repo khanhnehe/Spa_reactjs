@@ -6,15 +6,16 @@ import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 
-import { handleLoginApi } from "../../services/userService"
+import { handleLoginApi } from "../../services/userService";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
+      username: "",
       password: "",
       isShowPassword: false,
+      errMessage: ''
     };
   }
 
@@ -22,7 +23,7 @@ class Login extends Component {
     //hàm cập nhật lại biến state
     //bên trong là cái biến bạn muốn setState
     this.setState({
-      userName: event.target.value,
+      username: event.target.value,
     });
   };
 
@@ -33,18 +34,32 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    console.log(
-      "userName: ",
-      this.state.userName,
-      "password: ",
-      this.state.password
-    );
-    console.log("all state: ", this.state);
-    try {
-      await handleLoginApi(this.state.userName, this.state.password)
+    //trước khi gọi cái hàm handleLoginApi ấy thì ta cần setState tức ta sẽ clear những mã lỗi mà ta có trước đó
+    this.setState({
+      errMessage: ''
 
-    } catch (e) {
-      console.log(e)
+    })
+    try {
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if (data && data.errCode !== 0) {
+        this.setState({
+          errMessage: data.message
+        })
+      }
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user)
+        console.log('login successful')
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.data) {
+          this.setState({
+            errMessage: error.response.data.message
+
+          })
+        }
+      }
+      console.log('test thu', error.response)
     }
   };
 
@@ -69,7 +84,7 @@ class Login extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Username"
-                  value={this.state.userName}
+                  value={this.state.username}
                   onChange={(event) => this.handleOnChangeInputUserName(event)}
                 ></input>
               </div>
@@ -85,25 +100,27 @@ class Login extends Component {
                     onChange={(event) =>
                       this.handleOnChangeInputPassword(event)
                     }
-                  ></input>
-                  <span
-                    onClick={() => {
-                      this.handleShowHidePass()
-                    }}>
+                  >
+                  </input>
+                  <span onClick={() => { this.handleShowHidePass(); }}>
                     <i class={this.state.isShowPassword ? "fa fa-eye" : "fa fa-eye-slash"}></i>
                   </span>
+
                 </div>
               </div>
+
+              <div className="col-md-12" style={{ color: 'red' }}>
+                {this.state.errMessage}
+              </div>
               <div>
-                <button
-                  type="button"
-                  className="col-md-12 login-btn mt-4 ms-5 text-light"
+                <button type="button" className="col-md-12 login-btn mt-4 ms-5 text-light"
                   onClick={() => {
                     this.handleLogin();
                   }}>
                   login
                 </button>
               </div>
+
             </div>
           </div>
         </div>
@@ -121,9 +138,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+
+    // userLoginFail: () => dispatch(actions.userLoginFail()),
+    userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
+
   };
 };
 
