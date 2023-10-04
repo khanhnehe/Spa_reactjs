@@ -17,6 +17,7 @@ import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import Header from "./Header/Header";
 import System from "../routes/System";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";

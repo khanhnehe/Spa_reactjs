@@ -1,6 +1,4 @@
 import axios from "../axios"
-
-
 //cần tạo from data cho nó thì nó mới truyền đc email, password
 const handleLoginApi = (userEmail, userPassword) => {
     // trong function này ta cần gọi đến cái server nodejs của we
@@ -10,6 +8,13 @@ const handleLoginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', { email: userEmail, password: userPassword })
 }
 
+const getAllUsers = (inputId) => {
+    //template string
+    return axios.get(`api/get-all-users?id=${inputId}`)
+
+}
+
 export {
-    handleLoginApi
+    handleLoginApi,
+    getAllUsers
 }
