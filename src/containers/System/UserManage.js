@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
+import ModalUser from './ModalUser';
 import './UserManage.scss';
 
 //kiểu import 1 function
@@ -13,10 +14,11 @@ class UserManage extends Component {
         super(props);
         this.state = {
             arrUsers: [],
+            //mặc định cái modal này sẽ đóng, chỉ khi click vào add user thì nó mới mở == true
+            isOpenModalUser: false,
         }
     }
     // lifecycle
-
     async componentDidMount() {
         let response = await getAllUsers('ALL');
         if (response && response.errCode === 0) {
@@ -26,13 +28,36 @@ class UserManage extends Component {
         }
     }
 
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true
+        })
+    }
+
+    //bản chất thằng toggel sẽ là show và hidde 
+    //ta truyền function này qua thằng con
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser
+        })
+    }
 
     render() {
-        console.log('check render: ', this.state)
         let arrUsers = this.state.arrUsers;
         return (
             <div className="users-container">
+                <ModalUser
+                    //ở đây ta truyền props và function vào thằng con ModalUser
+                    //props của thằng con là state của thằng cha
+                    isOpen={this.state.isOpenModalUser}
+                    toggleModal={this.toggleUserModal}
+                />
                 <div className="title">Manage user with khanh </div>
+                <div className='ms-3'>
+                    <button className='btn btn-primary px-3'
+                        onClick={() => this.handleAddNewUser()}
+                    ><i className="fas fa-plus"></i>  Add new user</button>
+                </div>
                 <div className='users-table mt-4 mx-3 ms-3'>
                     <table id="customers">
                         <tr>
