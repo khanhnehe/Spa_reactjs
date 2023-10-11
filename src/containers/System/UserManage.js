@@ -6,8 +6,9 @@ import ModalUser from './ModalUser';
 import './UserManage.scss';
 
 //kiểu import 1 function
-import { getAllUsers, createNewUserService } from '../../services/userService';
-import { reject } from 'lodash';
+import { getAllUsers, createNewUserService, deleteUserService } from '../../services/userService';
+import { assignWith, reject } from 'lodash';
+import { emitter } from '../../utils/emitter';
 
 
 class UserManage extends Component {
@@ -58,12 +59,29 @@ class UserManage extends Component {
                 this.setState({
                     isOpenModalUser: false
                 })
+                //fire event 
+                emitter.emit('EVENT_CLEAR_MODAL_DATA');
             }
-            console.log('check response: ', response);
-
         } catch (e) {
             console.log(e)
         }
+    }
+
+    handleDeleteUse = async (user) => {
+        console.log('check user delete: ', user)
+        try {
+            let res = await deleteUserService(user.id);
+            if (res && res.errCode !== 0) {
+                alert(res.errMessage)
+            }
+            else {
+                await this.getAllUserFromReact();
+            }
+        } catch (e) {
+            console.log(e)
+
+        }
+
     }
 
     render() {
@@ -109,7 +127,7 @@ class UserManage extends Component {
 
                                         <td>
                                             <button className='btn-edit '> <i className="fas fa-pencil-alt"></i></button>
-                                            <button className='btn-delete'><i className="fas fa-trash"></i></button>
+                                            <button className='btn-delete' onClick={() => this.handleDeleteUse(item)}><i className="fas fa-trash"></i></button>
 
                                         </td>
                                     </tr>
