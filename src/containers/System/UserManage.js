@@ -6,7 +6,10 @@ import ModalUser from './ModalUser';
 import './UserManage.scss';
 
 //kiểu import 1 function
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, createNewUserService } from '../../services/userService';
+import { reject } from 'lodash';
+
+
 class UserManage extends Component {
     //constructor là hàm tạo và we khởi tạo 1 cái state 
     //nói cách khác là những cái biến  mà ta muốn dùng vs thằng class này thì we dùng từ khóa 'this, this ở đây là class này đấy(UserManage ) 
@@ -20,6 +23,10 @@ class UserManage extends Component {
     }
     // lifecycle
     async componentDidMount() {
+        await this.getAllUserFromReact()
+
+    }
+    getAllUserFromReact = async () => {
         let response = await getAllUsers('ALL');
         if (response && response.errCode === 0) {
             this.setState({
@@ -33,13 +40,30 @@ class UserManage extends Component {
             isOpenModalUser: true
         })
     }
-
     //bản chất thằng toggel sẽ là show và hidde 
     //ta truyền function này qua thằng con
     toggleUserModal = () => {
         this.setState({
             isOpenModalUser: !this.state.isOpenModalUser
         })
+    }
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.errCode !== 0) {
+                alert(response.errMessage);
+            } else {
+                await this.getAllUserFromReact();
+                this.setState({
+                    isOpenModalUser: false
+                })
+            }
+            console.log('check response: ', response);
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     render() {
@@ -51,6 +75,8 @@ class UserManage extends Component {
                     //props của thằng con là state của thằng cha
                     isOpen={this.state.isOpenModalUser}
                     toggleModal={this.toggleUserModal}
+                    createNewUser={this.createNewUser}
+
                 />
                 <div className="title">Manage user with khanh </div>
                 <div className='ms-3'>
@@ -60,35 +86,37 @@ class UserManage extends Component {
                 </div>
                 <div className='users-table mt-4 mx-3 ms-3'>
                     <table id="customers">
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Email</th>
-                            <th>Phone number</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
+                        <tbody>
 
-                        {/* ta chỉ dùng vòng lặp khi và chỉ ta có biến arrUsers */}
-                        {arrUsers && arrUsers.map((item, index) => {
-                            // để map() chạy đc cần có return
-                            return (
-                                <tr className=''>
-                                    <td>{item.firstName}</td>
-                                    <td>{item.lastName}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.phonemumber}</td>
-                                    <td>{item.address}</td>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                            {/* ta chỉ dùng vòng lặp khi và chỉ ta có biến arrUsers */}
+                            {arrUsers && arrUsers.map((item, index) => {
+                                // để map() chạy đc cần có return
+                                return (
+                                    <tr className=''>
+                                        <td>{item.firstName}</td>
+                                        <td>{item.lastName}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.phonemumber}</td>
+                                        <td>{item.address}</td>
 
-                                    <td>
-                                        <button className='btn-edit '> <i className="fas fa-pencil-alt"></i></button>
-                                        <button className='btn-delete'><i className="fas fa-trash"></i></button>
+                                        <td>
+                                            <button className='btn-edit '> <i className="fas fa-pencil-alt"></i></button>
+                                            <button className='btn-delete'><i className="fas fa-trash"></i></button>
 
-                                    </td>
-                                </tr>
-                            )
-                        })
-                        }
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
