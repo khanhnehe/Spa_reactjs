@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import Carouse from './Carouse'
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES } from '../../utils'
 
 import icon from '../../assets/iconclinic.png'
 import logo from '../../assets/q222.png'
@@ -11,11 +12,22 @@ import iconweight from '../../assets/iconweight.png'
 import iconrelax from '../../assets/iconrelax.png'
 import iconfiller from '../../assets/iconfiller2.png'
 
+import { changeLanguageApp } from '../../store/actions/'
+
 
 class HomeHeader extends Component {
 
+    changeLanguage = (language) => {
+        //fire redux event: actions
+        this.props.changeLanguageAppRedux(language)
+    }
+
     render() {
         console.log('check props: ', this.props)
+        //biến language này lấy từ trong redux lấy ở dưới ra á nhe chứ ko truyền từ cha sang con
+        let language = this.props.language;
+
+        console.log('check language: ', language)
 
         return (
             <React.Fragment>
@@ -44,13 +56,10 @@ class HomeHeader extends Component {
 
                         </div>
                         <div className='right-content'>
-                            {/* <i className="fas fa-caret-down"></i> */}
-                            <div className='language'>
-                                <div className='language-vi active'><b>VI</b></div>
-                            </div>
-                            <div className='language'>
-                                <div className='language-en active'><b>EN</b></div>
-                            </div>
+                            {/* check nếu nn của app là tiếng việt thì nó chạy cái class language-vi action, ko là tiếng việt chạy class language-vi thui */}
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
+
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
                     {/* <Carouse /> */}
@@ -94,7 +103,7 @@ class HomeHeader extends Component {
                     </div>
                     {/* <div className='home-header-line-down'></div> */}
                 </div>
-            </React.Fragment>);
+            </React.Fragment >);
     }
 
 }
@@ -109,6 +118,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 

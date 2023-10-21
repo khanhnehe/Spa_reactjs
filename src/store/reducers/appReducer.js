@@ -9,7 +9,8 @@ const initContentOfConfirmModal = {
 
 const initialState = {
     started: true,
-    language: 'vi',
+    language: 'en',
+    // language: 'vi',
     systemMenuPath: '/system/user-manage',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal
@@ -30,6 +31,14 @@ const appReducer = (state = initialState, action) => {
                     ...state.contentOfConfirmModal,
                     ...action.contentOfConfirmModal
                 }
+            }
+
+        case actionTypes.CHANGE_LANGUAGE:
+            console.log('check props redux:', action)
+            return {
+                ...state,
+                // lấy language thông qua thằng redux 
+                language: action.language,
             }
         default:
             return state;

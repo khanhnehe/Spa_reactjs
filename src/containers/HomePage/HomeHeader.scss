@@ -54,27 +54,29 @@
             align-items: center;
             justify-content: space-evenly;
             color: black;
+            font-weight: bold;
 
-            .language{
+            .language-en{
+                cursor: pointer;
+                // opacity: 0.5;
+                &.active{
+                    // opacity: 1;
+                    span{
+                        color: indianred;
 
-            
-
+                    }
+                }
+                }
+          
              .language-vi{
                 cursor: pointer;
+                // opacity: 0.5;
                 &.active{
-                    color: indianred;
-                }
+                    // opacity: 1;
+                    span{
+                        color: indianred;
 
-             }
-             
-             .language-en{
-                cursor: pointer;
-                
-                &.active{
-                    color: rgb(92, 205, 132);
-                }
-    
-                    
+                    }
                 }
             
             }
