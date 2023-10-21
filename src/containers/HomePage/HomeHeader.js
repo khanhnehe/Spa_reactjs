@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import logo from '../../assets/bia.png'
+import Carouse from './Carouse'
+import { FormattedMessage } from 'react-intl';
+
+import icon from '../../assets/iconclinic.png'
+import logo from '../../assets/q222.png'
+import iconwaxing from '../../assets/iconwaxxing.png'
+import iconweight from '../../assets/iconweight.png'
+import iconrelax from '../../assets/iconrelax.png'
+import iconfiller from '../../assets/iconfiller2.png'
+
 
 class HomeHeader extends Component {
 
     render() {
+        console.log('check props: ', this.props)
 
         return (
-            <>
+            <React.Fragment>
                 <div className='home-header-container'>
-                    {/* <img src={logo} /> */}
-
                     <div className='home-header-line'></div>
                     <div className='home-header-content'>
                         <div className='left-content'>
-                            <div className='header-logo'></div>
+                            <img src={logo} className="header-logo" />
                         </div>
 
                         <div className='center-content'>
                             <div className='child-content'>
-                                <div><b>Trang chủ</b></div>
+                                <div><b><FormattedMessage id="homeheader.homepage" /></b></div>
                             </div>
                             <div className='child-content'>
                                 <div><b>Dịch vụ</b><i className="fas fa-caret-down"></i></div>
@@ -36,28 +44,66 @@ class HomeHeader extends Component {
 
                         </div>
                         <div className='right-content'>
-                            <div><b>VN</b><i className="fas fa-caret-down"></i></div>
+                            {/* <i className="fas fa-caret-down"></i> */}
+                            <div className='language'>
+                                <div className='language-vi active'><b>VI</b></div>
+                            </div>
+                            <div className='language'>
+                                <div className='language-en active'><b>EN</b></div>
+                            </div>
                         </div>
                     </div>
+                    {/* <Carouse /> */}
+
                     <div className='home-header-banner'>
+                        <div className='content-up'>
+                            <div className='title'><FormattedMessage id="banner.title" /></div>
 
-                        <div className='search'>
-                            <i className='fas fa-search'></i>
-                            <input type='text' placeholder='tìm kiếm'></input>
+                            <div className='search'>
+                                <i className='fas fa-search'></i>
+                                <input type='text' placeholder='tìm kiếm'></input>
+                            </div>
                         </div>
-                        <div className='options'></div>
+
+                        <div className='content-down'>
+                            <div className='options'>
+                                <div className='options-child'>
+                                    <img src={icon} className="icon-child"></img>
+                                    <div className='text-child'>Dich vụ phòng khám</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconwaxing} className="icon-child"></img>
+                                    <div className='text-child'>Triệt lông Diode Laser</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconweight} className="icon-child"></img>
+                                    <div className='text-child'>Giảm béo body</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconrelax} className="icon-child"></img>
+                                    <div className='text-child'>Thư giãn & chăm sóc</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconfiller} className="icon-child"></img>
+                                    <div className='text-child'>Tiêm filler</div>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
+                    {/* <div className='home-header-line-down'></div> */}
                 </div>
-            </>
-        );
+            </React.Fragment>);
     }
 
 }
 
+
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
     };
 };
 
