@@ -1,0 +1,121 @@
+
+.Section-Service {
+
+    height: 40vh; /* Sử dụng 'vh' để đại diện cho 20% chiều cao của màn hình */
+    background: white;
+    // border: 1px solid red;
+    margin: 0 5%;
+
+    .Service-container {
+      margin-top: 30px;
+    
+
+    span {
+        font-size: 22px;
+        font-weight: 600;
+    }
+    
+
+    .Section-container {
+        margin: 0 100px;  
+       
+    }
+    
+    .Service-body {
+        // border: 1px solid red;
+
+        .Service-custom {
+
+            .bg-image1{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/nanMun.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image2{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/trietLong.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image2{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/mesoMun.png');
+
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image3{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/trietLong.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image4{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/treHoa.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image5{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/Co.jpg');
+
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image6{
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background: url('../../../assets/ClinicService/danong.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+        }
+
+        button.slick-arrow.slick-prev, button.slick-arrow.slick-next {
+            z-index: 1000 !important;
+            height: 4vh; /* Sử dụng 'vh' để đại diện cho 4% chiều cao của màn hình */
+            width: 3.7vw; /* Sử dụng 'vw' để đại diện cho 3.7% chiều rộng của màn hình */
+            background: white !important;
+            border: 2px solid rgb(234, 234, 234) !important;
+
+            &:hover {
+                background: rgb(234, 234, 234) !important;
+            }
+        }
+        .slick-prev::before, .slick-next::before {
+            font-family: FontAwesome !important;
+            color: black !important;
+            // content: "\e258" !important;
+        }
+    }
+}
+}

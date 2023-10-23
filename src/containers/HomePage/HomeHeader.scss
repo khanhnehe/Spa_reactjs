@@ -1,7 +1,6 @@
 
 .home-header-container{
     //nên đặt cho nó 1 chiều cao cố định trướd khi code
-    height: 70px;
     width: 100%;
 
     .home-header-line{
@@ -92,7 +91,6 @@
         background-repeat:no-repeat ;
         background-size: cover;
         background-position: top center;
-        position: relative; 
         display: flex;
         flex-direction: column;
 
@@ -160,9 +158,12 @@
                 text-align: center;
                 display: flex;
                 grid-gap: 130px;
+                justify-content: space-between;
+
                 // align-items: flex-end;
 
                 .options-child{
+                    
                     // border:  1px solid blue;
                     width: 100px;
                     cursor: pointer;
@@ -175,6 +176,9 @@
                         .icon-child {
                             border-color: #a97b59; /* Change the border color on hover */
                             transform: scale(1.1); /* Increase the size of the icon on hover */
+
+                            // transition: filter .6s,opacity .6s,transform .6s,box-shadow .3s
+
                         }
         }
                     .text-child{

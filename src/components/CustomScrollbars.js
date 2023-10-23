@@ -7,11 +7,40 @@ class CustomScrollbars extends Component {
 
     ref = React.createRef();
 
-    getScrollLeft =()=>{
+    // chặnc cuộng nagng
+    constructor(props) {
+        super(props);
+        this.preventHorizontalScroll = this.preventHorizontalScroll.bind(this);
+    }
+
+    componentDidMount() {
+        const scrollbars = this.ref.current;
+        if (scrollbars) {
+            scrollbars.view.addEventListener("scroll", this.preventHorizontalScroll);
+        }
+    }
+
+    componentWillUnmount() {
+        const scrollbars = this.ref.current;
+        if (scrollbars) {
+            scrollbars.view.removeEventListener("scroll", this.preventHorizontalScroll);
+        }
+    }
+
+    preventHorizontalScroll() {
+        const scrollbars = this.ref.current;
+        if (scrollbars) {
+            scrollbars.view.scrollLeft = 0;
+        }
+    }
+
+    // chặnc cuộng nagng
+
+    getScrollLeft = () => {
         const scrollbars = this.ref.current;
         return scrollbars.getScrollLeft();
     }
-    getScrollTop =()=>{
+    getScrollTop = () => {
         const scrollbars = this.ref.current;
         return scrollbars.getScrollTop();
     }
@@ -53,11 +82,11 @@ class CustomScrollbars extends Component {
         scroll();
     };
 
-    renderTrackHorizontal = (props) => {
-        return (
-            <div {...props} className="track-horizontal" />
-        );
-    };
+    // renderTrackHorizontal = (props) => {
+    //     return (
+    //         <div {...props} className="track-horizontal" />
+    //     );
+    // };
 
     renderTrackVertical = (props) => {
         return (
@@ -65,11 +94,11 @@ class CustomScrollbars extends Component {
         );
     };
 
-    renderThumbHorizontal = (props) => {
-        return (
-            <div {...props} className="thumb-horizontal" />
-        );
-    };
+    // renderThumbHorizontal = (props) => {
+    //     return (
+    //         <div {...props} className="thumb-horizontal" />
+    //     );
+    // };
 
     renderThumbVertical = (props) => {
         return (
@@ -84,7 +113,7 @@ class CustomScrollbars extends Component {
     };
 
     render() {
-        const { className, disableVerticalScroll, disableHorizontalScroll, children,...otherProps } = this.props;
+        const { className, disableVerticalScroll, children, ...otherProps } = this.props;
         return (
             <Scrollbars
                 ref={this.ref}
@@ -93,10 +122,10 @@ class CustomScrollbars extends Component {
                 hideTracksWhenNotNeeded={true}
                 className={className ? className + ' custom-scrollbar' : 'custom-scrollbar'}
                 {...otherProps}
-                renderTrackHorizontal={disableHorizontalScroll ? this.renderNone : this.renderTrackHorizontal}
+                // renderTrackHorizontal={() => <div />}  // Tắt cuộn ngang
                 renderTrackVertical={disableVerticalScroll ? this.renderNone : this.renderTrackVertical}
-                renderThumbHorizontal={disableHorizontalScroll ? this.renderNone : this.renderThumbHorizontal}
-                renderThumbVertical={disableVerticalScroll ? this.renderNone : this.renderThumbVertical}
+            // renderThumbHorizontal={() => <div />} // Tắt cuộn ngang
+            // renderThumbVertical={disableVerticalScroll ? this.renderNone : this.renderThumbVertical}
             >
                 {children}
             </Scrollbars>
