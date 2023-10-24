@@ -3,7 +3,11 @@
     display: none;
   }
 
-  .carousel img {
-    // max-height: 400px !important; /* hoặc giá trị khác phù hợp */
-    // align-items: flex-end;
- }
+  .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(13, 220, 192, 0.0), rgba(255, 255, 255, 0.71), rgba(255, 255, 255, 0.88));
+
+}

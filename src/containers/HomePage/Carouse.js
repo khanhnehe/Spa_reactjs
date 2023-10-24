@@ -21,7 +21,7 @@ const items = [
 
     },
     {
-        src: '/anhchay33.png',
+        src: '/anh3.png',
 
     }
 ];
@@ -81,7 +81,7 @@ class Carouse extends Component {
                 >
                     <img src={item.src} alt={item.altText}
                         className="d-block w-100"
-                        style={{ width: "100%", height: "250px", objectFit: "cover" ,}}
+                        style={{ width: "100%", height: "150px", objectFit: "cover", }}
                     />
                     <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
                 </CarouselItem>

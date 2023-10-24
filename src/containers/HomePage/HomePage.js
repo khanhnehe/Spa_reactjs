@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from './HomeHeader';
 import ClinicService from './Section/ClinicService';
+import HandBook from './Section/HandBook'
+
 
 class HomePage extends Component {
 
@@ -12,7 +14,13 @@ class HomePage extends Component {
                 <HomeHeader />
 
                 <ClinicService />
-                <div style={{ height: '300px' }}></div>
+                <div style={{ height: '120px' }}></div>
+
+                <HandBook />
+                <div style={{ height: '150px' }}></div>
+
+
+
             </div>
         );
     }
