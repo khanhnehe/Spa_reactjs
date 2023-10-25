@@ -42,12 +42,22 @@ class HomeHeader extends Component {
                             <div className='child-content'>
                                 <div><b><FormattedMessage id="homeheader.homepage" /></b></div>
                             </div>
-                            <div className='child-content'>
-                                <div><b>Dịch vụ</b><i className="fas fa-caret-down"></i></div>
+                            <div className='child-content dropdown'>
+                                <div className="service-label"><b>Dịch vụ</b><i className="fas fa-caret-down"></i></div>
+                                <ul className="service-options">
+                                    <li>Dịch vụ phòng khám</li>
+                                    <li>Triệt lông Diode Laser</li>
+                                    <li>Giảm béo body</li>
+                                    <li>Thư giãn & chăm sóc</li>
+                                    <li>Tiêm filler</li>
+                                </ul>
                             </div>
 
                             <div className='child-content'>
                                 <div><b>Giới thiệu</b></div>
+                            </div>
+                            <div className='child-content'>
+                                <div><b>Bảng giá</b></div>
                             </div>
 
                             <div className='child-content'>
@@ -62,47 +72,46 @@ class HomeHeader extends Component {
                             <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
-                    {/* <Carouse /> */}
-
-                    <div className='home-header-banner'>
-                        <div className='content-up'>
-                            <div className='title'><FormattedMessage id="banner.title" /></div>
-
-                            <div className='search'>
-                                <i className='fas fa-search'></i>
-                                <input type='text' placeholder='tìm kiếm'></input>
-                            </div>
-                        </div>
-
-                        <div className='content-down'>
-                            <div className='options'>
-                                <div className='options-child'>
-                                    <img src={icon} className="icon-child"></img>
-                                    <div className='text-child'>Dich vụ phòng khám</div>
-                                </div>
-                                <div className='options-child'>
-                                    <img src={iconwaxing} className="icon-child"></img>
-                                    <div className='text-child'>Triệt lông Diode Laser</div>
-                                </div>
-                                <div className='options-child'>
-                                    <img src={iconweight} className="icon-child"></img>
-                                    <div className='text-child'>Giảm béo body</div>
-                                </div>
-                                <div className='options-child'>
-                                    <img src={iconrelax} className="icon-child"></img>
-                                    <div className='text-child'>Thư giãn & chăm sóc</div>
-                                </div>
-                                <div className='options-child'>
-                                    <img src={iconfiller} className="icon-child"></img>
-                                    <div className='text-child'>Tiêm filler</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    {/* <div className='home-header-line-down'></div> */}
                 </div>
+                {/* <Carouse /> */}
+                <div className='home-header-banner'>
+                    <div className='content-up'>
+                        <div className='title'><FormattedMessage id="banner.title" /></div>
+
+                        <div className='search'>
+                            <i className='fas fa-search'></i>
+                            <input type='text' placeholder='tìm kiếm'></input>
+                        </div>
+                    </div>
+
+                    <div className='content-down'>
+                        <div className='options'>
+                            <div className='options-child'>
+                                <img src={icon} className="icon-child"></img>
+                                <div className='text-child'>Dich vụ phòng khám</div>
+                            </div>
+                            <div className='options-child'>
+                                <img src={iconwaxing} className="icon-child"></img>
+                                <div className='text-child'>Triệt lông Diode Laser</div>
+                            </div>
+                            <div className='options-child'>
+                                <img src={iconweight} className="icon-child"></img>
+                                <div className='text-child'>Giảm béo body</div>
+                            </div>
+                            <div className='options-child'>
+                                <img src={iconrelax} className="icon-child"></img>
+                                <div className='text-child'>Thư giãn & chăm sóc</div>
+                            </div>
+                            <div className='options-child'>
+                                <img src={iconfiller} className="icon-child"></img>
+                                <div className='text-child'>Tiêm filler</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                {/* <div className='home-header-line-down'></div> */}
             </React.Fragment >);
     }
 

@@ -26,8 +26,6 @@ class ClinicService extends Component {
 
         return (
             <>
-                {/* <Carouse /> */}
-
                 <div className='Section-Service'>
                     <div className='Service-container'>
                         <span className='Service-title'>DICH VỤ NỔI BẬT</span>
@@ -37,7 +35,7 @@ class ClinicService extends Component {
                                 <div className='Service-custom'>
                                     <div className='bg-image1' />
                                     <div className='Service-custom-down'>
-                                        <div className='text-one'>Giảm cân bằng </div>
+                                        <div className='text-one'>Giảm cân bằng công nghệ cao</div>
                                         <div className='gia'>Giá: 500.000 VND</div>
                                         <div className='time'><i className="fa fa-stethoscope"></i>
                                             1 lần | 60 phút</div>
@@ -90,24 +88,17 @@ class ClinicService extends Component {
                                             1 lần | 60 phút</div>
                                         <button className='btn-custom'>Đặt ngay</button>
                                     </div>
-
-
                                 </div>
-                                <div className='Service-custom'>
-                                    <div className='bg-image6' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Thư Giãn Toàn Thân Với Đá Nóng</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button>Đặt ngay</button>
-                                    </div>
-                                </div>
+
 
                             </Slider>
                         </div>
                     </div >
+
                 </div >
+
+
+
             </>
         );
     }

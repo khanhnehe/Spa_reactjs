@@ -13,7 +13,7 @@ import {
 
 const items = [
     {
-        src: '/anhchay1.png',
+        src: '/anh1.png',
 
     },
     {

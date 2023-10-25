@@ -1,0 +1,67 @@
+/* HomeFooter.scss */
+
+.Section-HomeFooter{
+    // border: 1px solid red;
+
+.HomeFooter-up{
+    height: 10px;
+    background: #000000;
+}
+.HomeFooter {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px 0;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .footer-section {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 10px;
+
+                .header-logo{
+                    height: 65px;
+                    width: 150px;
+                    cursor: pointer;
+                }
+
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+
+        
+    }
+}
+}
+.copyright {
+    text-align: center;
+}

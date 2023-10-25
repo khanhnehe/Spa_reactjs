@@ -7,7 +7,7 @@
     margin: 0 5%;
 
     .Service-container {
-      margin-top: 30px;
+      margin-top: 50px;
     
 
     span {
@@ -30,6 +30,8 @@
             border: 8px solid white;
             border-radius: 25px;
             background-image: linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.77), rgba(255, 255, 255, 0.97));
+            box-shadow: inset 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+
 
             .Service-custom-down{
                 // border: 1px solid red;
@@ -72,6 +74,7 @@
                         height: 30px;
                         color: white;
                         margin-left: 3px;
+                        margin-top: 3px;
 
                         &:hover {
                             border-color: #a97b59; /* Change the border color on hover */
