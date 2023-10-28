@@ -15,7 +15,9 @@ const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>
             <IntlProviderWrapper>
-                <App persistor={persistor}/>
+
+                {/* đây là nơi redux đc import vào video 54 */}
+                <App persistor={persistor} />
             </IntlProviderWrapper>
         </Provider>,
         document.getElementById('root')

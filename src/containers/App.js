@@ -48,9 +48,9 @@ class App extends Component {
       <Fragment>
         <Router history={history}>
           <div className="main-container">
-            {this.props.isLoggedIn && <Header />}
+            {/* {this.props.isLoggedIn && <Header />} */}
             <div className="content-container">
-              <CustomScrollbars disableHorizontalScroll style={{ height: '100vh' }}>
+              <CustomScrollbars style={{ height: '100vh' }}>
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
                   <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />

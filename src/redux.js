@@ -5,6 +5,8 @@ import { createBrowserHistory } from 'history';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createStateSyncMiddleware } from 'redux-state-sync';
+
+//giải thích ở 54
 import { persistStore } from 'redux-persist';
 
 import createRootReducer from './store/reducers/rootReducer';
@@ -22,6 +24,7 @@ export const history = createBrowserHistory({ basename: process.env.REACT_APP_RO
 const reduxStateSyncConfig = {
     whitelist: [
         actionTypes.APP_START_UP_COMPLETE,
+        actionTypes.CHANGE_LANGUAGE,
     ]
 }
 

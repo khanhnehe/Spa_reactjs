@@ -6,7 +6,6 @@ import HandBook from './Section/HandBook'
 import About from "./Section/About"
 import HomeFooter from './HomeFooter';
 import PriceList from './Section/PriceList'
-import './HomeHeader.scss';
 
 
 class HomePage extends Component {
