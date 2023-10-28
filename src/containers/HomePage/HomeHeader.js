@@ -23,11 +23,8 @@ class HomeHeader extends Component {
     }
 
     render() {
-        console.log('check props: ', this.props)
         //biến language này lấy từ trong redux lấy ở dưới ra á nhe chứ ko truyền từ cha sang con
         let language = this.props.language;
-
-        console.log('check language: ', language)
 
         return (
             <React.Fragment>

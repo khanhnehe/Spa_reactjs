@@ -4,6 +4,10 @@
     display: flex;
     margin: 0;
     padding: 0;
+    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+    overflow: hidden; /* Ẩn văn bản bị tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu "..." khi văn bản quá dài */
+    max-width: 100%; /* Đặt giới hạn chiều rộng tối đa */
     &.list-unstyled,
     .list-unstyled {
         list-style-type: none;
@@ -30,7 +34,7 @@
             position: absolute;
             padding: 0;
             .menu {
-                width: 205px;
+                width: fit-content;
                 padding: 0 15px;
                 height: 35px;
                 line-height: 35px;
@@ -69,9 +73,11 @@
                         }
                     }
                 }
-                &.active span {
-                    font-weight: 500;
-                    color: $colormain;
+                &.active {
+                    a{
+                        color: $colormain;
+                    }
+
                 }
                 &:hover {
                     background-color: darken($bg-menu-color, 3);

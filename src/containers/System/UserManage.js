@@ -172,7 +172,7 @@ class UserManage extends Component {
                             {arrUsers && arrUsers.map((item, index) => {
                                 // để map() chạy đc cần có return
                                 return (
-                                    <tr className=''>
+                                    <tr key={index}>
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.email}</td>

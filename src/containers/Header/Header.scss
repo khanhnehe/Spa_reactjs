@@ -27,6 +27,14 @@
     }
 
     .languages{
+        white-space: nowrap; /* Ngăn văn bản xuống dòng */
+        overflow: hidden; /* Ẩn văn bản bị tràn ra ngoài */
+        text-overflow: ellipsis; /* Hiển thị dấu "..." khi văn bản quá dài */
+        max-width: 100%; /* Đặt giới hạn chiều rộng tối đa */
+        .welcome{
+            margin-right: 10px;
+            
+        }
         font-weight: 600;
         .language-vi{
             margin-right: 15px;
