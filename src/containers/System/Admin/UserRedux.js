@@ -11,7 +11,9 @@ class UserRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            genderArr: []
+            genderArr: [],
+            roleArr: [],
+            positionArr: [],
 
         }
     }
@@ -35,6 +37,8 @@ class UserRedux extends Component {
     //kiểu Redux
     async componentDidMount() {
         this.props.getGenderStart();
+        this.props.getPositionStart();
+        this.props.getRoleStart();
 
     }
 
@@ -42,14 +46,32 @@ class UserRedux extends Component {
     componentDidUpdate(prevProps, preState, snapshot) {
         if (prevProps.genderRedux !== this.props.genderRedux) {
             this.setState({
-                genderArr: this.props.genderRedux
+                genderArr: this.props.genderRedux,
+
+            })
+        }
+        if (prevProps.roleRedux !== this.props.roleRedux) {
+            this.setState({
+                roleArr: this.props.roleRedux,
+
+            })
+
+        }
+        if (prevProps.positionRedux !== this.props.positionRedux) {
+            this.setState({
+                positionArr: this.props.positionRedux,
+
             })
         }
     }
     render() {
         let genders = this.state.genderArr;
         let language = this.props.language;
-        console.log('check props genderRedux: ', this.props.genderRedux)
+        let roles = this.state.roleArr;
+        let positions = this.state.positionArr;
+
+        let isLoadingGender = this.props.isLoadingGender;
+        console.log('check props genderRedux: ', this.state)
 
         return (
             <>
@@ -57,10 +79,17 @@ class UserRedux extends Component {
                     <div className='title'>
                         <FormattedMessage id='manage-user.user' />
                     </div>
+
+                    {/* check isLoadingGender */}
+
+
                     <div className="user-body" >
                         <div className='container col-8'>
                             <div className='row mt-4 p-2'>
+                                <div>{isLoadingGender === true ? 'Loading genders' : ''}</div>
+
                                 <div className='col-md-12 p-2'><FormattedMessage id='manage-user.add' /></div>
+
                                 <div className="col-md-6">
                                     <label ><FormattedMessage id='manage-user.email' /></label>
                                     <input type="email" className="form-control" />
@@ -84,28 +113,38 @@ class UserRedux extends Component {
                                 <label ><FormattedMessage id='manage-user.address' /></label>
                                 <input type="text" className="form-control" />
                             </div>
-                            <div className='row p-2'>
-                                <div className="col-md-6">
-                                    <label className="form-label"><FormattedMessage id='manage-user.role' /></label>
-                                    <select className="form-select " name="roleId">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Bác sĩ</option>
-                                        <option value="3">Bệnh nhân</option>
-                                    </select>
-                                </div>
-                                <div className="col-md-6">
-                                    <label className="form-label"><FormattedMessage id='manage-user.position' /></label>
-                                    <select className="form-select " name="">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Bác sĩ</option>
-                                        <option value="3">Bệnh nhân</option>
-                                    </select>
-                                </div>
+                            <div className="col-md-6 p-2">
+                                <label className="form-label"><FormattedMessage id='manage-user.phone' /></label>
+                                <input type="text" className="form-control" />
                             </div>
                             <div className='row p-2'>
-                                <div className="col-md-6">
-                                    <label className="form-label"><FormattedMessage id='manage-user.phone' /></label>
-                                    <input type="text" className="form-control" />
+                                <div className="col-md-3">
+                                    <label className="form-label"><FormattedMessage id='manage-user.role' /></label>
+                                    <select className="form-select " name="roleId">
+                                        {roles && roles.length > 0 &&
+                                            roles.map((item, index) => {
+                                                return (
+                                                    // <option key={index}>{item.valueVI}</option>
+                                                    <option key={index}>
+                                                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="col-md-3">
+                                    <label className="form-label"><FormattedMessage id='manage-user.position' /></label>
+                                    <select className="form-select " name="">
+                                        {positions && positions.length > 0 &&
+                                            positions.map((item, index) => {
+                                                return (
+                                                    // <option key={index}>{item.valueVI}</option>
+                                                    <option key={index}>
+                                                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
                                 </div>
                                 <div className="col-md-3">
                                     <label className="form-label"><FormattedMessage id='manage-user.gender' /></label>
@@ -124,7 +163,7 @@ class UserRedux extends Component {
                                 </div>
                             </div>
 
-                            <button type="submit" className="btn btn-primary ms-2 "><FormattedMessage id='manage-user.btn' /></button>
+                            <button type="submit" className="btn btn-primary ms-2 mt-2"><FormattedMessage id='manage-user.btn' /></button>
                         </div>
                     </div>
 
@@ -139,16 +178,20 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         genderRedux: state.admin.genders,
+        roleRedux: state.admin.roles,
+        positionRedux: state.admin.positions,
+        isLoadingGender: state.admin.isLoadingGender,
     };
 };
 
 //bắt buộc dùng dispatch
 const mapDispatchToProps = dispatch => {
     return {
-        getGenderStart: () => dispatch(actions.fetchGenderStart())
+        getGenderStart: () => dispatch(actions.fetchGenderStart()),
+        getPositionStart: () => dispatch(actions.fetchPositionStart()),
+        getRoleStart: () => dispatch(actions.fetchRoleStart()),
         // processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
-
     };
 };
 

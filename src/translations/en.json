@@ -12,7 +12,7 @@
     "admin": {
       "manage-user": "System user",
       "manage-admin": "Admin management",
-      "manage-doctor": "Doctor management",
+      "manage-staff": "Employee manager",
       "crud": "CRUD user",
       "crud-redux": "CRUD Redux",
 
