@@ -23,5 +23,20 @@
       "handbook": "Cẩm Nang",
       "manage-handbook": "Quản lý Cẩm Nang"
     }
+  },
+
+  "manage-user": {
+    "user": "Quản lý người dùng",
+    "add": "Thêm mới người dùng",
+    "email": "Email",
+    "pass": "Mật Khẩu",
+    "first": "Tên",
+    "last": "Họ",
+    "address": "Địa chỉ",
+    "role": "Vai trò",
+    "position": "Chức danh",
+    "phone": "Số điện thoại",
+    "gender": "Giới tính",
+    "btn": "Lưu"
   }
 }

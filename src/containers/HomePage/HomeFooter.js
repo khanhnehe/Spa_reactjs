@@ -33,7 +33,8 @@ class HomeFooter extends Component {
                             </div>
                             <div className='footer-section'>
                                 <h3>Follow Us</h3>
-                                <i class="icon-twitter-sign"></i>                                  </div>
+                                <i class="icon-twitter-sign"></i>
+                            </div>
                         </div>
                         <div className='copyright'>
                             &copy; 2023 Your Company. All Rights Reserved.
