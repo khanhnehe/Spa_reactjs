@@ -14,7 +14,7 @@ const adminReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START:
             state.isLoadingGender = true;
-            console.log('fire FETCH GENDER START: ', action)
+            // console.log('fire FETCH GENDER START: ', action)
             return {
                 ...state,
             }
@@ -22,13 +22,13 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_GENDER_SUCCESS:
             state.genders = action.data;
             state.isLoadingGender = false;
-            console.log('fire FETCH_GENDER_SUCCESS: ', state)
+            // console.log('fire FETCH_GENDER_SUCCESS: ', state)
             return {
                 ...state,
             }
 
         case actionTypes.FETCH_GENDER_FAILED:
-            console.log('fire FETCH_GENDER_FAILED: ', action)
+            // console.log('fire FETCH_GENDER_FAILED: ', action)
             state.isLoadingGender = false;
             state.genders = [];
 
@@ -44,13 +44,13 @@ const adminReducer = (state = initialState, action) => {
         //     }
         case actionTypes.FETCH_POSITION_SUCCESS:
             state.positions = action.data;
-            console.log('fire FETCH_POSITION_SUCCESS: ', state)
+            // console.log('fire FETCH_POSITION_SUCCESS: ', state)
             return {
                 ...state,
             }
 
         case actionTypes.FETCH_POSITION_FAILED:
-            console.log('fire FETCH_POSITION_FAILED: ', action)
+            // console.log('fire FETCH_POSITION_FAILED: ', action)
             state.positions = [];
 
             return {
@@ -65,18 +65,19 @@ const adminReducer = (state = initialState, action) => {
         //     }
         case actionTypes.FETCH_ROLE_SUCCESS:
             state.roles = action.data;
-            console.log('fire FETCH_ROLE_SUCCESS: ', state)
+            // console.log('fire FETCH_ROLE_SUCCESS: ', state)
             return {
                 ...state,
             }
 
         case actionTypes.FETCH_ROLE_FAILED:
-            console.log('fire FETCH_ROLE_FAILED: ', action)
+            // console.log('fire FETCH_ROLE_FAILED: ', action)
             state.roles = [];
 
             return {
                 ...state,
             }
+
 
 
         default:
