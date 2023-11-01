@@ -7,6 +7,7 @@ const initialState = {
     // thêm cái trường này để phân biêt khi nào API của ta đc gọi xong
     //xem như 1 trường dùng để đánh dấu
     isLoadingGender: false,
+    users: []
 
 }
 
@@ -73,6 +74,21 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ROLE_FAILED:
             // console.log('fire FETCH_ROLE_FAILED: ', action)
             state.roles = [];
+
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_USER_SUCCESS:
+            console.log('FETCH_ALL_USER_SUCCESS', action)
+            state.users = action.users;
+
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_USER_FAILED:
+            state.users = [];
 
             return {
                 ...state,

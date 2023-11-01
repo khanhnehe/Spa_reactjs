@@ -1,5 +1,7 @@
 import actionTypes from "./actionTypes";
-import { getAllCodeService, createNewUserService } from '../../services/userService';
+import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService } from '../../services/userService';
+import { toast } from "react-toastify";
+
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START,
@@ -108,8 +110,13 @@ export const createNewUser = (data) => {
 
             let res = await createNewUserService(data);
             console.log('check create user redux: ', res)
+            console.log('check getState:', getState())
+
             if (res && res.errCode === 0) {
                 dispatch(saveUserSuccess())
+                dispatch(fetchAllUserStart())
+                toast.success("Tạo mới người dùng thành công!");
+
             }
 
             else {
@@ -129,4 +136,71 @@ export const saveUserSuccess = () => ({
 
 export const saveUserFailed = () => ({
     type: actionTypes.CREATE_USER_FAILED,
+})
+
+
+//60 ALL USER
+export const fetchAllUserStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllUsers("ALL");
+            if (res && res.errCode === 0) {
+                // console.log('check getState:', getState())
+                //res.users mở network lên vào xem nó truyền gì thì truyền đó
+                //đảo mảng lại
+                dispatch(fetchAllUserSuccess(res.users.reverse()))
+            }
+            else {
+                dispatch(fetchAllUserFailed())
+            }
+
+        } catch (e) {
+            dispatch(fetchAllUserFailed())
+            console.log("fetchAllUserFailed error", e)
+        }
+    }
+
+};
+export const fetchAllUserSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_USER_SUCCESS,
+    //là data ta lấy từ api về 
+    users: data
+})
+
+export const fetchAllUserFailed = () => ({
+    type: actionTypes.FETCH_ALL_USER_FAILED,
+})
+
+
+//DELETE
+//datanayf chính là cái id user mà ta cần xóa
+export const fetchDeleteUser = (userId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteUserService(userId);
+            if (res && res.errCode === 0) {
+
+                dispatch(deleteUserSuccess())
+                dispatch(fetchAllUserStart())
+                toast.success("Xóa người dùng thành công!");
+            }
+            else {
+                dispatch(deleteUserFailed())
+                toast.error("Xóa người dùng thất bại!");
+
+            }
+
+        } catch (e) {
+            dispatch(deleteUserFailed())
+            console.log("saveUserFailed error", e)
+        }
+    }
+
+};
+export const deleteUserSuccess = (data) => ({
+    type: actionTypes.DELETE_USER_SUCCESS,
+})
+
+export const deleteUserFailed = () => ({
+    type: actionTypes.DELETE_USER_FAILED,
 })

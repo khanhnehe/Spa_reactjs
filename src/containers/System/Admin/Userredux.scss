@@ -1,6 +1,32 @@
 .redux-container{
     .user-body{
+        
         .container {
+            .text-user.col-12.text-light {
+                font-size: 15px;
+                /* text-align: justify; */
+                margin-left: 10px;
+                font-weight: 500;
+            }
+            
+            .border-big{
+                border: 1px solid #255f944d;
+
+            }
+
+            .border-user{
+                background: -webkit-linear-gradient(#006ed2, #67c2fd);           
+             }
+
+             button.b-user.btn.ms-3.mt-3.mb-3 {
+                background:  -webkit-linear-gradient(#006ed2, #67c2fd);           
+            }
         }
+
+    
+    }
+    .table-user{
+        border-top: 1px solid grey;
     }
 }
+
