@@ -215,7 +215,8 @@
 
 .child-content {
     cursor: pointer;
-  
+    position: relative;
+
     &.dropdown {
       position: relative;
   
@@ -229,36 +230,34 @@
         }
       }
   
-      .service-options {
-        display: none;
-        position: absolute;
-        background: rgba(255, 255, 255, 0.924);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1;
-        width: 200px; /* Điều chỉnh chiều rộng */
-        max-height: 200px; /* Điều chỉnh chiều cao tối đa */
-        // overflow-y: auto; /* Hiển thị thanh cuộn khi nội dung vượt quá chiều cao */
-        li {
-          padding: 10px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          border-bottom: 1px solid #ccc; /* Dấu gạch ngang giữa các tùy chọn */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
-          }
+    }
+}
 
+.service-options {
+    display: none;
+    position: absolute;
+    background: white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 200px;
+    max-height: 200px;
+    }
 
-  
-          &:hover {
-            background-color: #f0f0f0;
-          }
-        }
-      
-  
-      &:hover {
-        .service-options {
-          display: block;
-        }}}
-      }
+    li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    }
+
+    li:hover {
+    background-color: wheat;
+    }
+
+    .child-content:hover .service-options {
+    display: block;
+    }
+            
+

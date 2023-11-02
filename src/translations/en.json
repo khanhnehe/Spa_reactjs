@@ -39,6 +39,8 @@
     "position": "Position",
     "phone": "Phone number",
     "gender": "Gender",
-    "btn": "Save"
+    "btn": "Save",
+    "edit": "Save changes",
+    "editup": "Edit user information"
   }
 }

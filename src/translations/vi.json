@@ -37,6 +37,8 @@
     "position": "Chức danh",
     "phone": "Số điện thoại",
     "gender": "Giới tính",
-    "btn": "Lưu"
+    "btn": "Lưu",
+    "edit": "Lưu thay đổi",
+    "editup": "Chỉnh sửa thông tin người dùng"
   }
 }

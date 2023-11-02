@@ -18,6 +18,7 @@ class TableManageUser extends Component {
     async componentDidMount() {
         //fire redux để cho nó lấy dữ liệu =>đi định nghĩa action đi
         this.props.fetchAllUserRedux()
+
         //để hứng thằng này ta xuốnng hàm máptateToProps làm
     }
 
@@ -32,25 +33,17 @@ class TableManageUser extends Component {
     handleDeleteUser = (user) => {
         this.props.fetchDeleteUser(user.id)
     }
+    
     handleEditUser = (user) => {
-        console.log('edit user', user)
+        this.props.handleEditUserFromParentKey(user)
 
     }
     render() {
-        console.log('check all user', this.props.listUsers)
-        console.log('check state', this.state.userRedux)
         let arrUser = this.state.userRedux
 
         return (
 
-            // {/* {this.state.isOpenModalEditUser &&
-            //         <ModalEditUser
-            //             isOpen={this.state.isOpenModalEditUser}
-            //             toggleModalEdit={this.toggleEditUserModal}
-            //             currentUser={this.state.userEdit}
-            //             editUser={this.doEditUser}
-            //         />
-            //     } */}
+
             <>
                 <div className="users-container">
                     <div className='users-table mt-4 mx-3 ms-3'>
@@ -72,7 +65,7 @@ class TableManageUser extends Component {
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
                                                 <td>{item.email}</td>
-                                                <td>{item.phoneNumber}</td>
+                                                <td>{item.phonemumber}</td>
                                                 <td>{item.address}</td>
                                                 <td>
                                                     <button className='btn-edit '

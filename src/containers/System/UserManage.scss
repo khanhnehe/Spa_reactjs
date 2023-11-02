@@ -108,8 +108,15 @@
       padding: 0 10px;
       
     }}
+
+    /* Thay đổi màu chữ cho các option trong select */
+
+
   
 
   }
 
+}
+select.form-select option {
+  color: black !important; /* Màu chữ bạn muốn sử dụng */
 }

@@ -17,10 +17,25 @@
             .border-user{
                 background: -webkit-linear-gradient(#006ed2, #67c2fd);           
              }
+             .border-edit{
+                background: -webkit-linear-gradient(#ffda67, #ffc107);             }
 
-             button.b-user.btn.ms-3.mt-3.mb-3 {
+             button.b-user.btn {
+                color: aliceblue;
+                margin-left: 15px;
+                margin-top: 7px;
+                margin-bottom: 10px;
                 background:  -webkit-linear-gradient(#006ed2, #67c2fd);           
+            
             }
+            
+            button.b-edit.btn{
+                color: aliceblue;
+                margin-left: 15px;
+                margin-top: 7px;
+                margin-bottom: 10px;
+                background: -webkit-linear-gradient(#ffda67, #ffc107);             }
+            
         }
 
     
