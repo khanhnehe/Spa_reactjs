@@ -16,7 +16,7 @@ class PriceList extends Component {
         return (
             <>
                 <div className=''>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

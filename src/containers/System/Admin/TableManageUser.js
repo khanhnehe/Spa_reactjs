@@ -33,7 +33,7 @@ class TableManageUser extends Component {
     handleDeleteUser = (user) => {
         this.props.fetchDeleteUser(user.id)
     }
-    
+
     handleEditUser = (user) => {
         this.props.handleEditUserFromParentKey(user)
 

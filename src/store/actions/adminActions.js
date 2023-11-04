@@ -1,5 +1,8 @@
 import actionTypes from "./actionTypes";
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService } from '../../services/userService';
+import {
+    getAllCodeService, createNewUserService, getAllUsers,
+    deleteUserService, editUserService, getTopDoctorHomeService
+} from '../../services/userService';
 import { toast } from "react-toastify";
 
 
@@ -139,11 +142,13 @@ export const saveUserFailed = () => ({
 })
 
 
-//60 ALL USER
+//60 ALL USER, 63
 export const fetchAllUserStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllUsers("ALL");
+            // let resOne = await getTopDoctorHomeService(3);
+            // console.log('check response getTopDoctor: ', resOne)
             if (res && res.errCode === 0) {
                 // console.log('check getState:', getState())
                 //res.users mở network lên vào xem nó truyền gì thì truyền đó
@@ -238,3 +243,17 @@ export const editUserSuccess = (data) => ({
 export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED,
 })
+
+
+//LOAD TOP DOCTOR
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHomeService('5');
+            console.log('check load top doctor: ', res)
+
+        } catch (e) {
+
+        }
+    }
+}

@@ -33,7 +33,7 @@ class HomeFooter extends Component {
                             </div>
                             <div className='footer-section'>
                                 <h3>Follow Us</h3>
-                                <i class="icon-twitter-sign"></i>
+                                <i className="icon-twitter-sign"></i>
                             </div>
                         </div>
                         <div className='copyright'>

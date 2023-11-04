@@ -83,7 +83,7 @@ class Carouse extends Component {
                         className="d-block w-100"
                         style={{ width: "100%", height: "150px", objectFit: "cover", }}
                     />
-                    <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+                    {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
                 </CarouselItem>
             );
         });

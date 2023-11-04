@@ -119,5 +119,47 @@
     
   
     }
-  
+    
   }
+  .Paginate{
+    ul.pagination {
+      justify-content: center;
+      /* justify-content: right; */
+      /* text-decoration: none; */
+  }
+  li {
+    margin-left: 5px;
+    margin-top: 12px;
+    color: #007bff;
+    font-weight: 500;
+  }
+    
+  .custom-previous-class {
+    margin-top: 8px;
+    color: #fff;
+    border: 1px solid #007bff;
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+  
+  .custom-next-class {
+    margin-top: 8px;
+    color: #fff;
+    border: 1px solid #007bff;
+    padding: 3px 20px;
+    border-radius: 10px;
+  }
+  
+  /* CSS hover cho nút "Previous" và "Next" */
+  .custom-previous-class:hover,
+  .custom-next-class:hover {
+    // background-color: #0056b3; /* Màu nền khi hover qua nút "Previous" và "Next" */
+    border: 1px solid #0056b3; /* Viền khi hover qua nút "Previous" và "Next" */
+  }
+  
+  a{
+    text-decoration: none;
+    color: #007bff;
+  }
+  }
+

@@ -1,0 +1,162 @@
+
+.Section-OutStandingDoctor {
+
+    height: 40vh; /* Sử dụng 'vh' để đại diện cho 20% chiều cao của màn hình */
+    background: white;
+    // border: 1px solid red;
+    margin: 0 5%;
+    border-radius: 50%;
+
+    .OutStandingDoctor-container {
+      margin-top: 50px;
+    
+
+    span {
+        font-size: 22px;
+        font-weight: 600;
+    }
+    
+
+    .Section-container {
+        margin: 0 100px;  
+       
+    }
+    
+    .OutStandingDoctor-body {
+        // border: 1px solid red;
+
+        .OutStandingDoctor-custom {
+            padding: 15px;
+            // background: #debdb963;
+            border: 8px solid white;
+            border-radius: 25px;
+            // background-image: linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.77), rgba(255, 255, 255, 0.97));
+            // box-shadow: inset 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+        .outer-bg{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            .bg-image1{
+                border-radius: 50px;
+                margin-left: 7px;
+                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image2{
+                border-radius: 25px;
+                margin-left: 7px;                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpeg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image2{
+                border-radius: 25px;
+                margin-left: 7px;                
+                width: 65%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 25vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpeg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image3{
+                border-radius: 5px;
+                margin-left: 7px;                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image4{
+                border-radius: 5px;
+                margin-left: 7px;                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image5{
+                border-radius: 5px;
+                margin-left: 7px;                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+            .bg-image6{
+                border-radius: 5px;
+                margin-left: 7px;                width: 95%; /* Sử dụng 'vw' để đại diện cho 50% chiều rộng của màn hình */
+                height: 30vh; /* Sử dụng 'vh' để đại diện cho 25% chiều cao của màn hình */
+                background-image: url('../../../assets/ClinicService/bacsi.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: aliceblue;
+
+            }
+        }
+
+            .position{
+                // border: 1px solid red;
+                grid-gap: 5px;
+                display: grid;
+                // height: ;
+
+                .text-one{
+                    margin-left: 5px;
+                    height: fit-content;
+                    font-weight: 600;
+                    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+                    overflow: hidden; /* Ẩn văn bản bị tràn ra ngoài */
+                    text-overflow: ellipsis; /* Hiển thị dấu "..." khi văn bản quá dài */
+                    max-width: 100%; /* Đặt giới hạn chiều rộng tối đa */
+                }
+
+               
+            }
+
+            
+        }
+
+        button.slick-arrow.slick-prev, button.slick-arrow.slick-next {
+            z-index: 1000 !important;
+            height: 4vh; /* Sử dụng 'vh' để đại diện cho 4% chiều cao của màn hình */
+            width: 3.7vw; /* Sử dụng 'vw' để đại diện cho 3.7% chiều rộng của màn hình */
+            background: white !important;
+            border: 2px solid rgb(234, 234, 234) !important;
+
+            &:hover {
+                background: rgb(234, 234, 234) !important;
+            }
+        }
+        .slick-prev::before, .slick-next::before {
+            font-family: 'Glyphicons Halflings' !important;
+            color: black !important;
+            // content: "\e258" !important;
+        }
+
+
+    }
+}
+}

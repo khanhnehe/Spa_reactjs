@@ -157,6 +157,7 @@ class UserRedux extends Component {
                 phonemumber: this.state.phoneNumber,
                 gender: this.state.gender,
                 roleId: this.state.role,
+                positionId: this.state.position
             })
         }
         if (action === CRUD_ACTIONS.EDIT) {
@@ -171,6 +172,7 @@ class UserRedux extends Component {
                 phonemumber: this.state.phoneNumber,
                 gender: this.state.gender,
                 roleId: this.state.role,
+                positionId: this.state.position,
 
             })
 
@@ -190,6 +192,7 @@ class UserRedux extends Component {
             phoneNumber: user.phonemumber,
             gender: user.gender,
             role: user.roleId,
+            position: user.positionId,
             action: CRUD_ACTIONS.EDIT,
             userEditId: user.id
 
@@ -298,21 +301,23 @@ class UserRedux extends Component {
                                                 }
                                             </select>
                                         </div>
-                                        {/* <div className="col-md-3">
-                                    <label className="form-label"><FormattedMessage id='manage-user.position' /></label>
-                                    <select className="form-select "
-                                        onChange={(event) => { this.onChangeInput(event, "position") }}>
-                                        {positions && positions.length > 0 &&
-                                            positions.map((item, index) => {
-                                                return (
-                                                    // <option key={index}>{item.valueVI}</option>
-                                                    <option key={index} value={item.key}>
-                                                        {language === LANGUAGES.VI ? item.valueVI : item.valueEN}</option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div> */}
+                                        <div className="col-md-3 p-2">
+                                            <label className="form-label"><FormattedMessage id='manage-user.position' /></label>
+                                            <select className="form-select "
+                                                onChange={(event) => { this.onChangeInput(event, "position") }}
+                                                value={position}
+                                            >
+                                                {positions && positions.length > 0 &&
+                                                    positions.map((item, index) => {
+                                                        return (
+                                                            // <option key={index}>{item.valueVI}</option>
+                                                            <option key={index} value={item.key}>
+                                                                {language === LANGUAGES.VI ? item.valueVI : item.valueEN}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
                                         <div className="col-md-3 pt-2">
                                             <label className="form-label"><FormattedMessage id='manage-user.gender' /></label>
                                             <select className="form-select"
