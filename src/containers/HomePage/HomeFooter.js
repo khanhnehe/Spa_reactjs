@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import logo from '../../assets/q222.png'
+import logo from '../../assets/images/q222.png'
 
 
 class HomeFooter extends Component {

@@ -5,12 +5,12 @@ import Carouse from './Carouse'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils'
 
-import icon from '../../assets/iconclinic.png'
-import logo from '../../assets/q222.png'
-import iconwaxing from '../../assets/iconwaxxing.png'
-import iconweight from '../../assets/iconweight.png'
-import iconrelax from '../../assets/iconrelax.png'
-import iconfiller from '../../assets/iconfiller2.png'
+import icon from '../../assets/images/iconclinic.png'
+import logo from '../../assets/images/q222.png'
+import iconwaxing from '../../assets/images/iconwaxxing.png'
+import iconweight from '../../assets/images/iconweight.png'
+import iconrelax from '../../assets/images/iconrelax.png'
+import iconfiller from '../../assets/images/iconfiller2.png'
 
 import { changeLanguageApp } from '../../store/actions/'
 
@@ -42,11 +42,11 @@ class HomeHeader extends Component {
                             <div className='child-content dropdown'>
                                 <div className="service-label"><b>Dịch vụ</b><i className="fas fa-caret-down"></i></div>
                                 <ul className="service-options">
-                                    <li>Dịch vụ phòng khám</li>
+                                    <li>Dịch vụ da liễu</li>
                                     <li>Triệt lông Diode Laser</li>
                                     <li>Giảm béo body</li>
                                     <li>Thư giãn & chăm sóc</li>
-                                    <li>Tiêm filler</li>
+                                    <li>Dịch vụ thẩm mỹ</li>
                                 </ul>
                             </div>
 
@@ -85,7 +85,7 @@ class HomeHeader extends Component {
                         <div className='options'>
                             <div className='options-child'>
                                 <img src={icon} className="icon-child"></img>
-                                <div className='text-child'>Dich vụ phòng khám</div>
+                                <div className='text-child'>Dich vụ da liễu</div>
                             </div>
                             <div className='options-child'>
                                 <img src={iconwaxing} className="icon-child"></img>
@@ -101,7 +101,7 @@ class HomeHeader extends Component {
                             </div>
                             <div className='options-child'>
                                 <img src={iconfiller} className="icon-child"></img>
-                                <div className='text-child'>Tiêm filler</div>
+                                <div className='text-child'>Dịch vụ thẩm mỹ</div>
                             </div>
 
                         </div>

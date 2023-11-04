@@ -3,13 +3,29 @@ import { connect } from 'react-redux';
 import './OutStandingDoctor.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick"
+import { LANGUAGES } from "../../../utils"
 
 import * as actions from "../../../store/actions";
 
 
 
 
-class ClinicOutStandingDoctor extends Component {
+class OutStandingDoctor extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            arrDoctor: []
+        }
+    }
+
+    componentDidUpdate(prevProps, preState, snapshot) {
+        if (prevProps.topDoctorRedux !== this.props.topDoctorRedux) {
+            this.setState({
+                arrDoctor: this.props.topDoctorRedux
+            })
+        }
+
+    }
     componentDidMount() {
         this.props.loadTopDoctor();
 
@@ -27,7 +43,10 @@ class ClinicOutStandingDoctor extends Component {
             // prevArrow: <SamplePervArrow/>
         };
 
-
+        console.log('check topDoctorRedux: ', this.props.topDoctorRedux)
+        let arrDoctor = this.state.arrDoctor;
+        arrDoctor = arrDoctor.concat(arrDoctor).concat(arrDoctor)
+        let language = this.props.language;
         return (
             <>
                 <div className='Section-OutStandingDoctor'>
@@ -36,64 +55,32 @@ class ClinicOutStandingDoctor extends Component {
                         <div className='OutStandingDoctor-body'>
 
                             <Slider {...settings}>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
+
+                                {arrDoctor && arrDoctor.length > 0
+                                    && arrDoctor.map((item, index) => {
+                                        if (index === 0) {
+                                            // console.log('check item', item)
+                                        }
+                                        let nameVi = `${item.positionData.valueVI}, ${item.lastName} ${item.firstName}`;
+                                        let nameEn = `${item.positionData.valueEN},  ${item.lastName} ${item.firstName}`;
+                                        return (
+                                            <div className='OutStandingDoctor-custom' key={index} >
+                                                <div className='outer-bg'>
+                                                    <div className='bg-image2' />
+                                                </div>
+                                                <div className='position text-center'>
+                                                    <div className='text-one'>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                                    <div>da liễu</div>
+                                                </div>
 
 
-                                </div>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
+                                            </div>
+                                        )
+                                    }
 
+                                    )
+                                }
 
-                                </div>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
-
-                                </div>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
-
-
-                                </div>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
-
-
-                                </div>
-                                <div className='OutStandingDoctor-custom'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image2' />
-                                    </div>                                    <div className='position text-center'>
-                                        <div className='text-one'>Bác sĩ 1</div>
-                                        <div>da liễu</div>
-                                    </div>
-                                </div>
 
 
                             </Slider>
@@ -115,7 +102,9 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        topDoctorRedux: state.admin.topDoctor
     };
+
 };
 
 const mapDispatchToProps = dispatch => {
@@ -125,4 +114,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClinicOutStandingDoctor);
+export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);

@@ -7,7 +7,7 @@ import About from "./Section/About"
 import HomeFooter from './HomeFooter';
 import PriceList from './Section/PriceList'
 import OutStandingDoctor from './Section/OutStandingDoctor'
-
+import CarouseOne from './CarouseOne'
 
 class HomePage extends Component {
 
@@ -19,16 +19,16 @@ class HomePage extends Component {
 
                 <ClinicService />
                 <div style={{ height: '170px' }}></div>
+                <CarouseOne />
 
+                <OutStandingDoctor />
+                <div style={{ height: '100px' }}></div>
 
                 <HandBook />
                 <div style={{ height: '380px' }}></div>
 
-                <OutStandingDoctor />
-                <div style={{ height: '200px' }}></div>
-
                 <About />
-                <div style={{ height: '200px' }}></div>
+                <div style={{ height: '100px' }}></div>
 
                 <HomeFooter />
                 <div style={{ height: '' }}></div>

@@ -7,7 +7,8 @@ const initialState = {
     // thêm cái trường này để phân biêt khi nào API của ta đc gọi xong
     //xem như 1 trường dùng để đánh dấu
     isLoadingGender: false,
-    users: []
+    users: [],
+    topDoctor: []
 
 }
 
@@ -89,6 +90,20 @@ const adminReducer = (state = initialState, action) => {
 
         case actionTypes.FETCH_ALL_USER_FAILED:
             state.users = [];
+
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+            //action này là biến của thằng redux kéo lên trên coi
+            //action này giúp ta truy cập vào giá trị  
+            state.topDoctor = action.dataDoctor;
+
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_DOCTOR_FAILED:
+            state.topDoctor = [];
 
             return {
                 ...state,

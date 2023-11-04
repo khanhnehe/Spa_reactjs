@@ -249,10 +249,22 @@ export const editUserFailed = () => ({
 export const fetchTopDoctor = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getTopDoctorHomeService('5');
-            console.log('check load top doctor: ', res)
-
+            let res = await getTopDoctorHomeService('20');
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+                    dataDoctor: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+                })
+            }
         } catch (e) {
+            console.log('FETCH_TOP_DOCTOR_SUCCESS: ', e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+            })
 
         }
     }
