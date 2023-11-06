@@ -25,7 +25,8 @@ class ManageStaff extends Component {
             contentHTML: '',
             selectedOption: '',
             description: '',
-            listDoctor: []
+            listDoctor: [],
+            hasOldData: false
 
         };
     }
@@ -100,6 +101,13 @@ class ManageStaff extends Component {
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
             })
+        }
+        else {
+            this.setState({
+                contentHTML: '',
+                contentMarkdown: '',
+                description: '',
+            })
 
         }
         console.log(`check res :`, res);
@@ -144,7 +152,7 @@ class ManageStaff extends Component {
                     <MdEditor style={{ height: '500px' }}
                         renderHTML={text => mdParser.render(text)}
                         onChange={this.handleEditorChange}
-                        value={this.state.description}
+                        value={this.state.contentMarkdown}
                     />
                 </div>
                 <button

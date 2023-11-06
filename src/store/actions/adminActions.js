@@ -310,6 +310,9 @@ export const saveInfoDetailDoctor = (data) => {
 
                 })
             } else {
+                console.log('error res', res)
+                toast.error("Lưu thông tin ko  thành công!")
+
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
                 })

@@ -1,27 +1,42 @@
-.manage-staff-container{
+.manage-staff-container {
 
-    .save-markdown{
-        margin-left: 42px;
-        margin-top: 15px;
-        border: none;
-        background: -webkit-linear-gradient(#3797c9, #58bdfc);
+    .save-markdown {
+        margin-left  : 42px;
+        margin-top   : 15px;
+        border       : none;
+        background   : -webkit-linear-gradient(#3797c9, #58bdfc);
         border-radius: 3px;
-        padding: 4px 10px;
-        font-weight:500;
+        padding      : 4px 10px;
+        font-weight  : 500;
 
         &:hover {
             background: -webkit-linear-gradient(#18f4e2e0, #27628b);
         }
 
-        
     }
+
+
     label.text-up {
-        border: none;
-        background: #0da9fa;
-        padding: 2px 8px;
+        border       : none;
+        background   : #0da9fa;
+        padding      : 2px 8px;
         border-radius: 3px;
         margin-bottom: 5px;
-        color: aliceblue;
-        font-weight: 500;
+        color        : aliceblue;
+        font-weight  : 500;
+    }
+}
+
+.create-markdown {
+    margin-left  : 42px;
+    margin-top   : 15px;
+    border       : none;
+    background   : -webkit-linear-gradient(#bac937, #f4fc58);
+    border-radius: 3px;
+    padding      : 4px 10px;
+    font-weight  : 500;
+
+    &:hover {
+        background: -webkit-linear-gradient(#f4c818e0, #518b27);
     }
 }
