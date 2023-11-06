@@ -8,7 +8,11 @@ const initialState = {
     //xem như 1 trường dùng để đánh dấu
     isLoadingGender: false,
     users: [],
-    topDoctor: []
+    topDoctor: [],
+    allDoctor: [],
+    doctorDetail: null, // Thêm doctorDetail để lưu chi tiết thông tin bác sĩ
+    isLoadingDoctorDetail: false, // Thêm isLoadingDoctorDetail để theo dõi khi lấy dữ liệu bác sĩ
+
 
 }
 
@@ -109,6 +113,33 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             }
 
+        //67 get all doctor
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
+            state.allDoctor = action.dataGetDoctor;
+
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_DOCTOR_FAILED:
+            state.allDoctor = [];
+
+            return {
+                ...state,
+            }
+        //get detail 
+        case actionTypes.GET_DETAIL_DOCTOR_SUCCESS:
+            return {
+                ...state,
+                doctorDetail: action.payload, // Lưu dữ liệu chi tiết bác sĩ
+                isLoadingDoctorDetail: false,
+            }
+
+        case actionTypes.GET_DETAIL_DOCTOR_FAILED:
+            return {
+                ...state,
+                isLoadingDoctorDetail: false,
+            }
 
 
         default:

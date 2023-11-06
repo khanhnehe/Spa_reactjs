@@ -71,43 +71,46 @@ class HomeHeader extends Component {
                     </div>
                 </div>
                 {/* <Carouse /> */}
-                <div className='home-header-banner'>
-                    <div className='content-up'>
-                        <div className='title'><FormattedMessage id="banner.title" /></div>
+                {/* 69 */}
+                {this.props.isShowBanner === true &&
+                    <div className='home-header-banner'>
+                        <div className='content-up'>
+                            <div className='title'><FormattedMessage id="banner.title" /></div>
 
-                        <div className='search'>
-                            <i className='fas fa-search'></i>
-                            <input type='text' placeholder='tìm kiếm'></input>
+                            <div className='search'>
+                                <i className='fas fa-search'></i>
+                                <input type='text' placeholder='tìm kiếm'></input>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='content-down'>
-                        <div className='options'>
-                            <div className='options-child'>
-                                <img src={icon} className="icon-child"></img>
-                                <div className='text-child'>Dich vụ da liễu</div>
-                            </div>
-                            <div className='options-child'>
-                                <img src={iconwaxing} className="icon-child"></img>
-                                <div className='text-child'>Triệt lông Diode Laser</div>
-                            </div>
-                            <div className='options-child'>
-                                <img src={iconweight} className="icon-child"></img>
-                                <div className='text-child'>Giảm béo body</div>
-                            </div>
-                            <div className='options-child'>
-                                <img src={iconrelax} className="icon-child"></img>
-                                <div className='text-child'>Thư giãn & chăm sóc</div>
-                            </div>
-                            <div className='options-child'>
-                                <img src={iconfiller} className="icon-child"></img>
-                                <div className='text-child'>Dịch vụ thẩm mỹ</div>
-                            </div>
+                        <div className='content-down'>
+                            <div className='options'>
+                                <div className='options-child'>
+                                    <img src={icon} className="icon-child"></img>
+                                    <div className='text-child'>Dich vụ da liễu</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconwaxing} className="icon-child"></img>
+                                    <div className='text-child'>Triệt lông Diode Laser</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconweight} className="icon-child"></img>
+                                    <div className='text-child'>Giảm béo body</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconrelax} className="icon-child"></img>
+                                    <div className='text-child'>Thư giãn & chăm sóc</div>
+                                </div>
+                                <div className='options-child'>
+                                    <img src={iconfiller} className="icon-child"></img>
+                                    <div className='text-child'>Dịch vụ thẩm mỹ</div>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
+                }
                 {/* <div className='home-header-line-down'></div> */}
             </React.Fragment >);
     }

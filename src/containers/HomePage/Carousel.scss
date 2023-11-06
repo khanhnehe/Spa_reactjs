@@ -12,10 +12,87 @@
 
 }
 
-.relax-img-1{
-  background: url('../../assets/images/relax2.png');
-  height: 300px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+.container{
+    .text-one {
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    }
+    .col-custom{
+      width: fit-content;
+      display: flex;
+
+    
+      .img-custom {
+        cursor: pointer;
+        // width: 70%;
+        height: 450px;
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      
+      
+        .relax-img-1, .relax-img-2, .relax-img-3 {
+          width: 100%;
+          height: 100%;
+          display: block;
+          transition: transform 0.3s;
+          
+          .text-child {
+            position: absolute;
+            text-anchor: middle;
+            alignment-baseline: middle;
+            bottom: 10%; /* Đặt văn bản ở cuối ảnh */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          }
+        }
+        
+        &:hover .relax-img-1,
+        &:hover .relax-img-2,
+        &:hover .relax-img-3 {
+          transform: scale(1.1);
+          text-child {
+            opacity: 0;
+          }
+        }
+        
+        .card-body {
+          padding: 1rem;
+        }
+        
+        .card-text {
+          font-size: 18px;
+        }
+        
+        .relax-img-1 {
+          background-image: url('../../assets/images/relax-img-2.png');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+        
+        .relax-img-2 {
+          background-image: url('../../assets/images/relax-img-3.png');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+        
+        .relax-img-3 {
+          background-image: url('../../assets/images/relax-img-4.png');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+      }}
+    
 }
+
+

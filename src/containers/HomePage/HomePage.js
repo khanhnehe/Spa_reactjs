@@ -15,11 +15,12 @@ class HomePage extends Component {
 
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader isShowBanner={true} />
+
+                <CarouseOne />
 
                 <ClinicService />
                 <div style={{ height: '170px' }}></div>
-                <CarouseOne />
 
                 <OutStandingDoctor />
                 <div style={{ height: '100px' }}></div>

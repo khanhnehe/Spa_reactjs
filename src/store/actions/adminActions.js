@@ -1,7 +1,9 @@
 import actionTypes from "./actionTypes";
 import {
     getAllCodeService, createNewUserService, getAllUsers,
-    deleteUserService, editUserService, getTopDoctorHomeService
+    deleteUserService, editUserService, getTopDoctorHomeService,
+    getAllDoctorService, saveDetailDoctor, getDetailInforDoctor
+
 } from '../../services/userService';
 import { toast } from "react-toastify";
 
@@ -269,3 +271,90 @@ export const fetchTopDoctor = () => {
         }
     }
 }
+
+//get All doctor 67
+export const fetchAllDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorService();
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+                    dataGetDoctor: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_ALL_DOCTOR_SUCCESS: ', e)
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTOR_FAILED
+            })
+
+        }
+    }
+}
+
+//SAVE INFORMATION DOCTOR
+export const saveInfoDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctor(data);
+            if (res && res.errCode === 0) {
+                toast.success("Lưu thông tin thành công!")
+
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS
+
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            toast.error("Lưu thông tin không thành công!")
+            console.log('SAVE_DETAIL_DOCTOR_FAILED: ', e)
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+            })
+
+        }
+    }
+}
+
+//get detail doctor
+export const getDetailDoctor = (inputId) => {
+    return async (dispatch) => {
+        try {
+            let res = await getDetailInforDoctor(inputId);
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.GET_DETAIL_DOCTOR_SUCCESS
+
+                })
+            } else {
+                dispatch(getDetailDoctorFailed());
+            }
+        } catch (e) {
+            console.log('GET_DETAIL_DOCTOR_FAILED: ', e);
+            dispatch(getDetailDoctorFailed());
+        }
+    };
+}
+
+export const getDetailDoctorSuccess = (data) => {
+    return {
+        type: actionTypes.GET_DETAIL_DOCTOR_SUCCESS,
+        payload: data, // Truyền dữ liệu chi tiết bác sĩ vào payload
+    };
+}
+
+
+export const getDetailDoctorFailed = () => {
+    return {
+        type: 'GET_DETAIL_DOCTOR_FAILED',
+    };
+};
