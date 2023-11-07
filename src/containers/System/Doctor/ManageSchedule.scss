@@ -1,0 +1,74 @@
+.manage-schedule-container {
+
+    .manage-schedule-title {}
+
+    .pick-hour-container {
+        margin   : 20px 0;
+        display  : flex;
+        gap      : 20px;
+        flex-wrap: wrap;
+
+        button {
+            padding    : 6px 20px;
+            border     : 1px solid #dddfaf;
+            background : #fff89f;
+            font-weight: 500;
+            font-size  : 17px;
+            box-shadow : 0px 1px 1px 0px #a6a6a6;
+            color: black
+        }
+    }
+
+    label.text-up {
+        border       : none;
+        background   : #0da9fa;
+        padding      : 2px 8px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        color        : aliceblue;
+        font-weight  : 500;
+    }
+
+    .fa-calendar:before {
+        content  : "\f133";
+        color    : #1c9bdf;
+        font-size: 19px;
+    }
+
+    .date-picker-container {
+        position: relative;
+    }
+
+    .date-picker-container .form-control {
+        padding-right: 30px;
+        /* Để tạo khoảng trống để hiển thị biểu tượng */
+    }
+
+    .date-picker-container i {
+        position : absolute;
+        right    : 10px;
+        top      : 50%;
+        transform: translateY(-50%);
+        color    : #888;
+        /* Màu của biểu tượng */
+        cursor   : pointer;
+    }
+
+    .btn-schedule {
+        border       : none;
+        background   : #0da9fa;
+        border-radius: 3px;
+        padding      : 6px 10px;
+        font-weight  : 500;
+        color        : white;
+
+        &:hover {
+            background: #0dcaf0;
+            color        : white;
+
+        }
+    }
+
+
+
+}

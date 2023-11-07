@@ -28,3 +28,10 @@ export const YesNoObj = {
     YES: 'Y',
     NO: 'N'
 }
+
+//71 PHÂN QUYỀN
+export const USER_ROLE = {
+    ADMIN: 'R1',
+    STAFF: 'R2',
+    PATIENT: 'R3'
+}

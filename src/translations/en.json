@@ -24,6 +24,9 @@
 
       "handbook": "Handbook",
       "manage-handbook": "Handbook management"
+    },
+    "doctor": {
+      "manage-schedule": "Manage appointment schedules"
     }
   },
 

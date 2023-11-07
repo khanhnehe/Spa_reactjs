@@ -130,7 +130,7 @@ class ManageStaff extends Component {
                 </div>
                 <div className='more-infor row px-5 mt-5 mb-5'>
                     <div className='content-left col-4 form-group'>
-                        <label className='text-up'>Chọn bác sĩ</label>
+                        <label className='text-up'>Chọn nhân viên</label>
                         <Select
                             value={this.state.selectedOption}
                             onChange={this.handleChangeSelect}

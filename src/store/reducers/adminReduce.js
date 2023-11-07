@@ -10,9 +10,9 @@ const initialState = {
     users: [],
     topDoctor: [],
     allDoctor: [],
-    doctorDetail: null, // Thêm doctorDetail để lưu chi tiết thông tin bác sĩ
-    isLoadingDoctorDetail: false, // Thêm isLoadingDoctorDetail để theo dõi khi lấy dữ liệu bác sĩ
-
+    // doctorDetail: null, 
+    // isLoadingDoctorDetail: false,
+    allScheduleTime: []
 
 }
 
@@ -139,6 +139,21 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoadingDoctorDetail: false,
+            }
+
+
+        //72 TIME đạt lịch
+        case actionTypes.FETCH_ALL_SCHEDULE_TIME_SUCCESS:
+            state.allScheduleTime = action.dataTime;
+            return {
+                ...state
+            }
+
+        case actionTypes.FETCH_ALL_SCHEDULE_TIME_FAILED:
+            state.allScheduleTime = []
+
+            return {
+                ...state,
             }
 
 

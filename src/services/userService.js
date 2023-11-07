@@ -49,7 +49,7 @@ const saveDetailDoctor = (data) => {
 }
 
 const getDetailInforDoctor = (inputId) => {
-    console.log('check data detail doctor from service: ', inputId);
+    // console.log('check data detail doctor from service: ', inputId);
     return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`)
 }
 

@@ -1,264 +1,273 @@
-
-.home-header-container{
+.home-header-container {
     //nên đặt cho nó 1 chiều cao cố định trướd khi code
-    width: 100%;
-    position: sticky;
+    width     : 100%;
+    position  : sticky;
     background: white;
-    z-index: 10000;
-    top: 0;
+    z-index   : 10000;
+    top       : 0;
 
-    .home-header-line{
-        height: 10px;    
-        background:black;
+    .home-header-line {
+        height    : 10px;
+        background: black;
     }
 
-    .home-header-line-down{
-        height: 20px;    
+    .home-header-line-down {
+        height    : 20px;
         background: white;
     }
 
-    .home-header-content{
-        width: 100%;
-        height: 100%;
+    .home-header-content {
+        width  : 100%;
+        height : 100%;
         padding: 0 20px;
         display: flex;
 
-        .left-content{
-            width: 25%;
-            display: flex;
-            align-items: center;
+        .left-content {
+            width          : 25%;
+            display        : flex;
+            align-items    : center;
             justify-content: space-evenly;
 
-            .header-logo{
+            .header-logo {
                 height: 60px;
-    width: 130px;
+                width : 130px;
                 cursor: pointer;
             }
 
         }
 
-        .center-content{
-            width: 50%;
-            display: flex;
-            align-items: center;
+        .center-content {
+            width          : 50%;
+            display        : flex;
+            align-items    : center;
             justify-content: space-between;
-            color: black;
-            margin-right: 10px;
+            color          : black;
+            margin-right   : 10px;
 
-            .child-content{
+            .child-content {
                 cursor: pointer;
 
             }
-                    .service-options {
-                    display: none;
-                    position: absolute;
-                    background: white;
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                    z-index: 1;
-                    width: 200px;
-                    max-height: 200px;
 
-                    
-                    li {
-                        padding: 10px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                        }
-                    
-                        li:hover {
-                        background-color: wheat;
-                        }
-                    
-                    }
-                
-                    .child-content:hover .service-options {
-                    display: block;
-                    }
+            .service-options {
+                display   : none;
+                position  : absolute;
+                background: white;
+                list-style: none;
+                margin    : 0;
+                padding   : 0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index   : 1;
+                width     : 200px;
+                max-height: 200px;
+
+
+                li {
+                    padding   : 10px;
+                    cursor    : pointer;
+                    transition: background-color 0.3s;
+                }
+
+                li:hover {
+                    background-color: wheat;
+                }
+
+            }
+
+            .child-content:hover .service-options {
+                display: block;
+            }
         }
 
-        .right-content{
-            width: 25%;
-            display: flex;
-            align-items: center;
+        .right-content {
+            width          : 25%;
+            display        : flex;
+            align-items    : center;
             justify-content: space-evenly;
-            color: black;
-            font-weight: bold;
+            color          : black;
+            font-weight    : bold;
 
-            .language-en{
+            .language-en {
                 cursor: pointer;
+
                 // opacity: 0.5;
-                &.active{
+                &.active {
+
                     // opacity: 1;
-                    span{
+                    span {
                         color: indianred;
 
                     }
                 }
-                }
-          
-             .language-vi{
+            }
+
+            .language-vi {
                 cursor: pointer;
+
                 // opacity: 0.5;
-                &.active{
+                &.active {
+
                     // opacity: 1;
-                    span{
+                    span {
                         color: indianred;
 
                     }
                 }
-            
+
             }
 
-            
+
         }
 
     }
 
-      }
+}
 
-      .home-header-banner{
-        background: url('../../assets/images/thiet.png');
-        height: 400px;
-        background-repeat:no-repeat ;
-        background-size: cover;
-        background-position: top center;
-        display: flex;
-        flex-direction: column;
-
-        
-
-        .content-up{
-            // border:  1px solid red;
-            height: 65%;
-            padding-top: 15px;
-            background-image: linear-gradient(rgba(126, 126, 126, 0.25), rgba(255, 255,255, 0.1));
+.home-header-banner {
+    background         : url('../../assets/images/thiet.png');
+    height             : 400px;
+    background-repeat  : no-repeat;
+    background-size    : cover;
+    background-position: top center;
+    display            : flex;
+    flex-direction     : column;
 
 
-            .title{
-                text-align: center;
-                font-size: 30px;
-                text-shadow: #00000047;
-                margin-bottom: 15px;
-                color: white;
-            }
 
-            .search{
-                position: absolute;
-                top: 35%; 
-                left: 50%; 
-                transform: translate(-50%, -50%); /* Di chuyển nó về giữa theo cả hai hướng */
-                display: flex;
-                width: fit-content;
-                padding: 10px;
-                border-radius: 25px;
-                background: #00000047;
-                align-items: center;
-        
-                }
-        
-                i{
-                    margin: 0 5px;
-                    color:aliceblue;
-                }
-        
-                input {
-                    height: 30px;
-                    width: 300px;
-                    background: transparent;
-                    border: none;
-                    outline: none;
-                    color: white;
-                }
-        
-                input::placeholder {
-                    color: white; /* Màu cho placeholder */
-                }
+    .content-up {
+        // border:  1px solid red;
+        height          : 65%;
+        padding-top     : 15px;
+        background-image: linear-gradient(rgba(126, 126, 126, 0.25), rgba(255, 255, 255, 0.1));
+
+
+        .title {
+            text-align   : center;
+            font-size    : 30px;
+            text-shadow  : #00000047;
+            margin-bottom: 15px;
+            color        : white;
+        }
+
+        .search {
+            position     : absolute;
+            top          : 35%;
+            left         : 50%;
+            transform    : translate(-50%, -50%);
+            /* Di chuyển nó về giữa theo cả hai hướng */
+            display      : flex;
+            width        : fit-content;
+            padding      : 10px;
+            border-radius: 25px;
+            background   : #00000047;
+            align-items  : center;
 
         }
 
-        .content-down{
-            // border:  1px solid blue;
-            height: 35%;
-            padding: 0 50px;
-            display: flex;
-            justify-content: center;
-            background-image: linear-gradient(rgba(255, 255,255, 0.1), rgba(255, 255,255, 0.8), rgba(255, 255,255, 1));
-
-
-            .options{
-                text-align: center;
-                display: flex;
-                grid-gap: 130px;
-                justify-content: space-between;
-
-                // align-items: flex-end;
-
-                .options-child{
-                    
-                    // border:  1px solid blue;
-                    width: 100px;
-                    cursor: pointer;
-
-                     &:hover {
-                        .text-child {
-                            color: #a97b59; /* Change the text color on hover */
-                        }
-
-                        .icon-child {
-                            border-color: #a97b59; /* Change the border color on hover */
-                            transform: scale(1.1); /* Increase the size of the icon on hover */
-
-                            // transition: filter .6s,opacity .6s,transform .6s,box-shadow .3s
-
-                        }
-                     }
-                    .text-child{
-                        font-size:  17px;
-                        font-weight: 500;
-                    }
-
-                    .icon-child{
-                        padding: 10px;
-                        border: 1px solid white;
-                        background: white;
-                        border-radius: 50%;
-                        width: 70px;
-                        height: 70px;
-                        transition: transform 0.3s ease; /* Add a smooth transition for the icon size change */
-
-                    }
-                }
-
-            }
-
+        i {
+            margin: 0 5px;
+            color : aliceblue;
         }
-       
-        
+
+        input {
+            height    : 30px;
+            width     : 300px;
+            background: transparent;
+            border    : none;
+            outline   : none;
+            color     : white;
+        }
+
+        input::placeholder {
+            color: white;
+            /* Màu cho placeholder */
+        }
+
     }
+
+    .content-down {
+        // border:  1px solid blue;
+        height          : 35%;
+        padding         : 0 50px;
+        display         : flex;
+        justify-content : center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1));
+
+
+        .options {
+            text-align     : center;
+            display        : flex;
+            grid-gap       : 130px;
+            justify-content: space-between;
+
+            // align-items: flex-end;
+
+            .options-child {
+
+                // border:  1px solid blue;
+                width : 100px;
+                cursor: pointer;
+
+                &:hover {
+                    .text-child {
+                        color: #a97b59;
+                        /* Change the text color on hover */
+                    }
+
+                    .icon-child {
+                        border-color: #a97b59;
+                        /* Change the border color on hover */
+                        transform   : scale(1.1);
+                        /* Increase the size of the icon on hover */
+
+                        // transition: filter .6s,opacity .6s,transform .6s,box-shadow .3s
+
+                    }
+                }
+
+                .text-child {
+                    font-size  : 17px;
+                    font-weight: 500;
+                }
+
+                .icon-child {
+                    padding      : 10px;
+                    border       : 1px solid white;
+                    background   : white;
+                    border-radius: 50%;
+                    width        : 70px;
+                    height       : 70px;
+                    transition   : transform 0.3s ease;
+                    /* Add a smooth transition for the icon size change */
+
+                }
+            }
+
+        }
+
+    }
+
+
+}
 
 //Dich dụ dropdown
 
 .child-content {
-    cursor: pointer;
+    cursor  : pointer;
     position: relative;
 
     &.dropdown {
-      position: relative;
-  
-      .service-label {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-  
-        i {
-          margin-left: 5px;
+        position: relative;
+
+        .service-label {
+            display    : flex;
+            align-items: center;
+            cursor     : pointer;
+
+            i {
+                margin-left: 5px;
+            }
         }
-      }
-  
+
     }
 }
-
-

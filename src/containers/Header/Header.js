@@ -3,17 +3,46 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+//71
+import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 //language
-import { LANGUAGES } from "../../utils/constant"
+import { LANGUAGES, USER_ROLE } from "../../utils/constant"
 import { FormattedMessage } from 'react-intl';
+import _ from 'lodash'
 
 
 class Header extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            // là cai menu render khi we chạy app 
+            menuApp: []
+        }
+    }
 
     handleChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
+    }
+    //71 phân quyền ngdung
+    componentDidMount() {
+        let userInfo = this.props.userInfo;
+        let menu = [];
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleId;
+            if (role === USER_ROLE.ADMIN) {
+                menu = adminMenu;
+
+            }
+            if (role === USER_ROLE.STAFF) {
+                menu = doctorMenu;
+
+            }
+        }
+
+        this.setState({
+            menuApp: menu
+        })
     }
 
     render() {
@@ -24,12 +53,12 @@ class Header extends Component {
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
                 <div className='languages'>
                     <span className='welcome'>
                         <FormattedMessage id="homeheader.welcome" />
-                        {userInfo && userInfo.lastName ? userInfo.lastName : ''} !
+                        {userInfo && userInfo.firstName ? userInfo.firstName : ''} !
                     </span>
                     <span className={language === LANGUAGES.VI ? "language-vi active" : "language-vi"}
                         onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}>VN</span>
