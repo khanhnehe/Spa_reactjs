@@ -1,47 +1,53 @@
-.doctor-detail-container{
-    height: 500px;
-    border-top: 1px solid black;
-    padding: 20px 100px;
+.doctor-detail-container {
+    height       : 500px;
+    // padding      : 20px 100px;
     margin-bottom: 50px;
 
+    .intro-doctor {
+        border-top: 1px solid black;
+    display: flex;
+    height: 200px;
+    margin-top: 20px;
+    padding: 30px 100px;
+    box-shadow: -2px 1px 3px 1px #888888;
 
-    .intro-doctor{
-        display: flex;
-        height: 130px;
-        margin-top: 40px;
 
-        .content-left{
+
+        .content-left {
             width: 20%;
-            .img-custom{
-                .bg-image{
-                border-radius: 100px;
-                margin: 0 55px;
-                width: 50%;
-                height: 130px; 
-                background-image: url('../../../assets/images/bacSi.png');
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-color: aliceblue;
-           
+
+            .img-custom {
+                .bg-image {
+                    border-radius      : 100px;
+                    margin             : 0 55px;
+                    width              : 50%;
+                    height             : 130px;
+                    background-image   : url('../../../assets/images/bacSi.png');
+                    background-position: center center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                    background-color   : aliceblue;
+
                 }
             }
 
-            
+
 
         }
 
-        .content-right{
-            padding-left:10px ;
-            width: 80%;
-            display: flex;
+        .content-right {
+            padding-left  : 10px;
+            width         : 80%;
+            display       : flex;
             flex-direction: column;
-            .up{
-                font-size: 20px;
+
+            .up {
+                font-size  : 20px;
                 font-weight: 500;
                 padding-top: 5px;
             }
-            .down{
+
+            .down {
                 padding-top: 10px;
 
             }
@@ -49,18 +55,14 @@
         }
 
     }
-    .schedule-doctor{
 
-    }
+    .schedule-doctor {}
 
-    .detail-intor-doctor{
-        border-top: 1px solid #8c8c8c;
-        margin-top: 35px;
+    .detail-intor-doctor {
+        margin-top: 5px;
         background: #f3f9ff;
-        padding: 10px;
-    }
+        padding: 30px 100px;
+        }
 
-    .comment-doctor{
-        
-    }
+    .comment-doctor {}
 }

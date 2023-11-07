@@ -11,6 +11,7 @@ import iconwaxing from '../../assets/images/iconwaxxing.png'
 import iconweight from '../../assets/images/iconweight.png'
 import iconrelax from '../../assets/images/iconrelax.png'
 import iconfiller from '../../assets/images/iconfiller2.png'
+import { withRouter } from 'react-router';
 
 import { changeLanguageApp } from '../../store/actions/'
 
@@ -20,6 +21,12 @@ class HomeHeader extends Component {
     changeLanguage = (language) => {
         //fire redux event: actions
         this.props.changeLanguageAppRedux(language)
+    }
+    returnToHome = () => {
+        if (this.props.history) {
+            this.props.history.push(`/home`);
+        }
+
     }
 
     render() {
@@ -32,7 +39,8 @@ class HomeHeader extends Component {
                     <div className='home-header-line'></div>
                     <div className='home-header-content'>
                         <div className='left-content'>
-                            <img src={logo} className="header-logo" />
+                            <img src={logo} className="header-logo"
+                                onClick={() => this.returnToHome()} />
                         </div>
 
                         <div className='center-content'>
@@ -132,4 +140,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));
