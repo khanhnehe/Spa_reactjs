@@ -118,17 +118,21 @@ class ManageSchedule extends Component {
 
 
         }
-        let formateDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        //hàm này giúp cover time send
+        // let formateDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        // let formateDate = moment(currentDate).unix()
+
+        let formateDate = new Date(currentDate).getTime()
         if (rangeTime && rangeTime.length > 0) {
             // lọc những trường có isSelected === true
             let selectedTime = rangeTime.filter(item => item.isSelected === true)
             // console.log('check time', selectedTime)
             if (selectedTime && selectedTime.length > 0) {
-                selectedTime.map(schedule => {
+                selectedTime.map((schedule, index) => {
                     let object = {};
                     object.staffId = selectedDoctor.value;// value , label
                     object.date = formateDate;
-                    object.time = schedule.keyMap;
+                    object.timeType = schedule.keyMap;
                     result.push(object)
 
                 })
@@ -140,7 +144,12 @@ class ManageSchedule extends Component {
 
             }
         }
-        let res = await saveBulkScheduleDoctor(result)
+        let res = await saveBulkScheduleDoctor({
+            //truyền 3 tham số này cho nodejs
+            arrSchedule: result,
+            staffId: selectedDoctor.value,
+            formateDate: formateDate
+        })
         console.log('check time check saveBulkScheduleDoctor', res)
         console.log('check time check result', result)
 
