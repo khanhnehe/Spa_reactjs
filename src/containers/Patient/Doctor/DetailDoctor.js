@@ -4,6 +4,7 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import './DetailDoctor.scss'
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from "../../../utils";
+import DoctorSchedule from './DoctorSchedule';
 
 //dùng để điều hướng
 
@@ -76,7 +77,15 @@ class DetailDoctor extends Component {
                         </div>
 
                     </div>
-                    <div className='schedule-doctor'></div>
+                    {/* 75 schedule-doctor */}
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule
+                                doctorIdFromParent={detailDoctor
+                                    && detailDoctor.id ? detailDoctor.id : -1} />
+                        </div>
+                        <div className='content-right'></div>
+                    </div>
                     <div className='detail-intor-doctor'>
                         {detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
                             <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }} />
