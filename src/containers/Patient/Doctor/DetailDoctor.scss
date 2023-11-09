@@ -9,7 +9,6 @@
         height    : 200px;
         margin-top: 20px;
         padding   : 30px 100px;
-        box-shadow: -2px 1px 3px 1px #888888;
 
 
 
@@ -41,10 +40,20 @@
             display       : flex;
             flex-direction: column;
 
+            
             .up {
                 font-size  : 20px;
                 font-weight: 500;
                 padding-top: 5px;
+                span.text-custom{
+                    height: fit-content;
+                    margin-top: 5px;
+                    font-weight: 600;
+                    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+                    overflow: hidden; /* Ẩn văn bản bị tràn ra ngoài */
+                    text-overflow: ellipsis; /* Hiển thị dấu "..." khi văn bản quá dài */
+                    max-width: 100%; /* Đặt giới hạn chiều rộng tối đa */
+            }
             }
 
             .down {
@@ -62,14 +71,11 @@
         height : 200px;
 
         .content-left {
-            width : 60%;
-            border: 1px solid red;
+            width : 100%;
 
         }
 
         .content-right {
-            width : 40%;
-            border: 1px solid rgb(234, 255, 0);
 
         }
     }

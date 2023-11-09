@@ -1,3 +1,54 @@
-select {
-    text-transform: capitalize;
+
+
+.Doctor-schedule-container {
+  .all-schedule {
+    select {
+        text-transform: capitalize;
+        border-bottom: 1px solid rgb(147, 147, 147);
+        border-top: 1px solid white;
+        border-right: 1px solid white;
+        border-left: 1px solid white;
+        border-radius: 3px;
+        padding: 3px;
+        
+      }
+
+  }
+
+  .all-available-time {
+    .text-calendar {
+      color: #09a9d7;
+
+      .fa-calendar:before {
+        content: "\f133";
+        margin-right: 5px;
+      }
+    }
+
+    .time-content {
+        .text-down{
+            font-weight: 500;
+        }
+      display: flex;
+      gap: 15px;
+      flex-wrap: nowrap; /* Ngăn các button xuống dòng */
+      overflow-x: auto; /* Tự động cuộn ngang nếu cần */
+
+      button {
+        white-space: normal; /* Cho phép nội dung xuống dòng */
+        padding: 8px 10px;
+        border: none;
+        outline: none;
+        min-width: 120px;
+        border-radius: 3px;
+        background: #fff89f;
+        margin-bottom: 20px;
+
+        &:hover {
+          background: #ff7373;
+          color: white;
+        }
+      }
+    }
+  }
 }

@@ -66,11 +66,11 @@ class DetailDoctor extends Component {
                         </div>
                         <div className='content-right'>
                             <div className='up'>
-                                {language === LANGUAGES.VI ? nameVi : nameEn}
+                                <span className='text-custom'> {language === LANGUAGES.VI ? nameVi : nameEn}</span>
                             </div>
                             <div className='down'>
                                 {detailDoctor.Markdown && detailDoctor.Markdown.description
-                                    && <span>
+                                    && <span className='text-custom'>
                                         {detailDoctor.Markdown.description}
                                     </span>}
                             </div>
