@@ -133,7 +133,6 @@ class ManageStaff extends Component {
     }
 
     handleSaveContentMarkdown = () => {
-        // if()
         let { hasOldData } = this.state;
         this.props.saveInfoDetailDoctor({
             contentHTML: this.state.contentHTML,
@@ -286,6 +285,7 @@ class ManageStaff extends Component {
                     type='button'>
                     {hasOldData === true ?
                         <span>Cập nhật thông tin</span>
+
                         :
                         <span>Lưu thông tin</span>
 
