@@ -387,3 +387,44 @@ export const fetchAllScheduleTime = () => {
         }
     }
 }
+
+//78 function này sẽ get các info của doctor
+export const getRequiredDoctorInfor = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START
+            })
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+
+            if (resPrice && resPrice.errCode === 0
+                && resPayment && resPayment.errCode === 0) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data
+                }
+                dispatch(fetchRequiredDoctorSuccess(data))
+            }
+            else {
+                dispatch(fetchRequiredDoctorFailed())
+            }
+
+        } catch (e) {
+            dispatch(fetchRequiredDoctorFailed())
+            console.log("fetchRequiredDoctorFailed error", e)
+        }
+    }
+
+};
+
+
+export const fetchRequiredDoctorSuccess = (allRequiredData) => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+    data: allRequiredData
+
+})
+
+export const fetchRequiredDoctorFailed = () => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+})

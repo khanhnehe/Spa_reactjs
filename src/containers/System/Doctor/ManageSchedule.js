@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import './ManageSchedule.scss'
-import { FormattedMessage } from 'react-intl';
 import Select from 'react-select';
 import * as actions from "../../../store/actions";
 import { LANGUAGES, dateFormat } from "../../../utils"
@@ -150,8 +149,15 @@ class ManageSchedule extends Component {
             staffId: selectedDoctor.value,
             formateDate: formateDate
         })
-        console.log('check time check saveBulkScheduleDoctor', res)
-        console.log('check time check result', result)
+
+        if (res && res.errCode === 0) {
+            toast.success("Lưu lịch hẹn thành công")
+        }
+        else {
+            toast.error("Lỗi lưu lịch hẹn!");
+            console.log('error saveBulkScheduleDoctor: ', res)
+        }
+
 
     }
     render() {
@@ -161,6 +167,7 @@ class ManageSchedule extends Component {
 
         let rangeTime = this.state.rangeTime
         // console.log('check state:', rangeTime);
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
 
 
         return (
@@ -186,7 +193,7 @@ class ManageSchedule extends Component {
                                         className='form-control'
                                         onChange={this.handOnchangeDatePicker}
                                         value={this.state.currentDate}
-                                        minDate={new Date()}
+                                        minDate={yesterday}
 
                                     />
                                     <i className="fa fa-calendar"></i>

@@ -12,7 +12,8 @@ class DetailDoctor extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            detailDoctor: {}
+            detailDoctor: {},
+            currentDoctorId: -1,
 
         }
 
@@ -23,14 +24,19 @@ class DetailDoctor extends Component {
         //check trong biến match phải có thằng params và trong params phaỉ có id
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
+            this.setState({
+                currentDoctorId: id
+
+            })
+
             let res = await getDetailInforDoctor(id);
             if (res && res.errCode === 0) {
                 this.setState({
                     detailDoctor: res.data
-
                 })
             }
-            console.log('check doctor infor: ', res);
+
+            // console.log('check doctor infor: ', id);
         }
     }
 
@@ -78,13 +84,17 @@ class DetailDoctor extends Component {
 
                     </div>
                     {/* 75 schedule-doctor */}
-                    <div className='schedule-doctor'>
-                        <div className='content-left'>
-                            <DoctorSchedule
-                                doctorIdFromParent={detailDoctor
-                                    && detailDoctor.id ? detailDoctor.id : -1} />
+                    <div className='schedule-doctor-big'>
+                        <div className='schedule-doctor'>
+                            <div className='content-up'>
+                                <DoctorSchedule
+                                    doctorIdFromParent={this.state.currentDoctorId} />
+                            </div>
+
                         </div>
-                        <div className='content-right'></div>
+                        <div className='content-down'>
+
+                        </div>
                     </div>
                     <div className='detail-intor-doctor'>
                         {detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (

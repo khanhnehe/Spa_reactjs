@@ -64,21 +64,25 @@
         }
 
     }
-
+.schedule-doctor-big{
     .schedule-doctor {
         display: flex;
         margin : 0 100px;
-        height : 200px;
+        height : 100%;
 
-        .content-left {
+        .content-up {
             width : 100%;
 
         }
-
-        .content-right {
-
-        }
     }
+
+    .content-down{
+        border: 1px solid red;
+        margin : 30px 100px;
+        height: 200px;
+    }
+}
+    
 
     .detail-intor-doctor {
         margin-top: 5px;

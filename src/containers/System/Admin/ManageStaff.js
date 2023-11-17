@@ -21,12 +21,17 @@ class ManageStaff extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // save to Markdown table
             contentMarkdown: '',
             contentHTML: '',
             selectedOption: '',
             description: '',
             listDoctor: [],
-            hasOldData: false
+            hasOldData: false,
+            //78 save to staff_infor table
+            listPrice: [],
+            listPayment: [],
+            note: ''
 
         };
     }
@@ -35,16 +40,18 @@ class ManageStaff extends Component {
 
     componentDidMount() {
         this.props.fetchAllDoctor();
+        //78
+        this.props.getRequiredDoctorInfor()
 
     }
-    buildDataInputSelect = (inputData) => {
+    buildDataInputSelect = (inputData, type) => {
         let result = [];
         let language = this.props.language;
         if (inputData && inputData.length > 0) {
             inputData.map((item, index) => {
                 let object = {};
-                let labelVI = `${item.lastName} ${item.firstName}`;
-                let labelEN = `${item.lastName} ${item.firstName}`;
+                let labelVI = type === 'USERS' ? `${item.lastName} ${item.firstName}` : item.valueVI;
+                let labelEN = type === 'USERS' ? `${item.lastName} ${item.firstName}` : item.valueEN;
                 object.label = language === LANGUAGES.VI ? labelVI : labelEN;
                 object.value = item.id;
                 result.push(object);
@@ -57,7 +64,8 @@ class ManageStaff extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.allDoctor !== this.props.allDoctor) {
-            let dataSelect = this.buildDataInputSelect(this.props.allDoctor)
+            //phải truyền cho nó 1 cái type ko sẽ bị undefine
+            let dataSelect = this.buildDataInputSelect(this.props.allDoctor, 'USERS')
             this.setState({
                 listDoctor: dataSelect
             })
@@ -67,6 +75,22 @@ class ManageStaff extends Component {
             this.setState({
                 listDoctor: dataSelect
             })
+        }
+
+        //78
+
+        if (prevProps.allRequireDoctorInfor !== this.props.allRequireDoctorInfor) {
+            // console.log('get data redux', this.props.allRequireDoctorInfor)
+            let { resPrice, resPayment } = this.props.allRequireDoctorInfor;
+            let dataSelectPrice = this.buildDataInputSelect(resPrice)
+            let dataSelectPayment = this.buildDataInputSelect(resPayment)
+            console.log('get data new', dataSelectPrice, dataSelectPayment)
+
+            this.setState({
+                listPrice: dataSelectPrice,
+                listPayment: dataSelectPayment
+            })
+
         }
     }
 
@@ -120,9 +144,7 @@ class ManageStaff extends Component {
     }
 
     render() {
-        let language = this.props.language;
-
-        console.log('check state', this.state)
+        // console.log('check state', this.state)
         return (
             <div className='manage-staff-container mb-5'>
                 <div className='title mt-4 '>
@@ -135,6 +157,7 @@ class ManageStaff extends Component {
                             value={this.state.selectedOption}
                             onChange={this.handleChangeSelect}
                             options={this.state.listDoctor}
+                            placeholder={'Chọn bác sĩ'}
                         />
 
                     </div>
@@ -142,12 +165,39 @@ class ManageStaff extends Component {
                         <label className='text-up'>Thông tin giới thiệu</label>
                         <textarea className='form-control' rows='4'
                             value={this.state.description}
-                            onChange={(event) => this.handleChangeDesc(event)}
+                            // onChange={(event) => this.handleChangeDesc(event)}
+                            placeholder={'Nhập thông tin vào...'}
                         >
-                            abc
                         </textarea>
                     </div>
                 </div>
+                {/* thêm tạo tt */}
+                <div className='row staff-infor-extra'>
+                    <div className='col-3 form-group ms-5'>
+                        <label>Chọn giá</label>
+                        <Select
+                            // value={this.state.selectedOption}
+                            // onChange={this.handleChangeSelect}
+                            options={this.state.listPrice}
+                            placeholder={'Chọn giá dịch vụ'}
+                        />                    </div>
+                    < div className='col-4 form-group'>
+                        <label>Chọn phương thức thanh toán</label>
+                        <Select
+                            // value={this.state.selectedOption}
+                            onChange={this.handleChangeSelect}
+                            options={this.state.listPayment}
+                            placeholder={'Chọn phương thức thanh toán'}
+                        />
+                    </div>
+                    < div className='col-4 form-group'>
+                        <label>Note</label>
+                        <input className='form-control'></input>
+
+                    </div>
+
+                </div>
+
                 <div className='manage-staff-editor px-5 mt-3'>
                     <MdEditor style={{ height: '500px' }}
                         renderHTML={text => mdParser.render(text)}
@@ -167,14 +217,18 @@ const mapStateToProps = state => {
     return {
         allDoctor: state.admin.allDoctor,
         language: state.app.language,
-
+        //78
+        allRequireDoctorInfor: state.admin.allRequireDoctorInfor
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllDoctor: () => dispatch(actions.fetchAllDoctor()),
-        saveInfoDetailDoctor: (data) => dispatch(actions.saveInfoDetailDoctor(data))
+        saveInfoDetailDoctor: (data) => dispatch(actions.saveInfoDetailDoctor(data)),
+        //78
+        getRequiredDoctorInfor: () => dispatch(actions.getRequiredDoctorInfor()),
+
     };
 };
 
