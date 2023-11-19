@@ -1,0 +1,21 @@
+.doctor-extra-infor-container {
+    .text-price {
+        font-size  : 20px;
+        font-weight: 400;
+        padding-top: 4px;
+        border-top : 1px solid #9b9a9a;
+
+        span.ms-1.text-price-child {
+            color: #09a9d7;
+        }
+
+        input {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            border: none;
+            color: #09a9d7;
+        }
+    }
+}

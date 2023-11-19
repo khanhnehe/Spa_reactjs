@@ -155,16 +155,44 @@ class ManageStaff extends Component {
     handleChangeSelect = async (selectedOption) => {
         // console.log('check: ',  )
         this.setState({ selectedOption });
+        //80 lấy ra payment và price fill vào infor
+        let { listPayment, listPrice } = this.state;
+
 
         let res = await getDetailInforDoctor(selectedOption.value);
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
             let markdown = res.data.Markdown;
+
+            //80 nếu có Staff_infor thì mới trả ra vì 1 số user có staff_infor = null
+            let priceId = '', paymentId = '', note = '', selectedPayment, selectedPrice;
+
+
+            if (res.data.Staff_infor) {
+
+                paymentId = res.data.Staff_infor.paymentId;
+                priceId = res.data.Staff_infor.priceId;
+
+                selectedPayment = listPayment.find(item => {
+                    return item && item.value === paymentId
+                })
+                selectedPrice = listPrice.find(item => {
+                    return item && item.value === priceId
+                })
+                // console.log('check findItem', selectedPayment, selectedPrice, listPayment, paymentId)
+
+
+            }
+
             //set lại giá trị đã có
             this.setState({
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
-                // hasOldData: true
+                hasOldData: true,
+                //80 gán lại tt
+                selectedPayment: selectedPayment,
+                selectedPrice: selectedPrice
+
             })
         }
         else {
@@ -285,7 +313,6 @@ class ManageStaff extends Component {
                     type='button'>
                     {hasOldData === true ?
                         <span>Cập nhật thông tin</span>
-
                         :
                         <span>Lưu thông tin</span>
 

@@ -5,6 +5,7 @@ import './DetailDoctor.scss'
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor';
 
 //dùng để điều hướng
 
@@ -48,7 +49,7 @@ class DetailDoctor extends Component {
 
     render() {
         //69
-        console.log('check state detail: ', this.state)
+        // console.log('check state detail: ', this.state)
         let language = this.props.language;
         let detailDoctor = this.state.detailDoctor
         let nameVi = '', nameEn = '';
@@ -88,11 +89,16 @@ class DetailDoctor extends Component {
                         <div className='schedule-doctor'>
                             <div className='content-up'>
                                 <DoctorSchedule
-                                    doctorIdFromParent={this.state.currentDoctorId} />
+                                    doctorIdFromParent={this.state.currentDoctorId}
+                                />
                             </div>
 
                         </div>
+                        {/* 81 */}
                         <div className='content-down'>
+                            <DoctorExtraInfor
+                                doctorIdFromParent={this.state.currentDoctorId}
+                            />
 
                         </div>
                     </div>

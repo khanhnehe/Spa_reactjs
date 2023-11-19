@@ -6,13 +6,18 @@ import { FormattedMessage } from 'react-intl';
 import localization from "moment/locale/vi"
 import { LANGUAGES } from "../../../utils"
 import { getScheduleByDate } from '../../../services/userService';
-
+import BookingModal from '../Modal/BookingModal'
 class DoctorSchedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
             allDays: [],
-            allAvailableTime: []
+            allAvailableTime: [],
+            //81
+            isOpenModalBooking: false,
+            //ta lưu time chọn trong state
+            //truyền cục data này sang bên trong modal của we
+            dataScheduleTimeModal: {}
         }
     }
 
@@ -103,46 +108,75 @@ class DoctorSchedule extends Component {
         }
     }
 
+    //thời gian mà ta click 81
+    handleClickScheduleTime = (time) => {
+        this.setState({
+            isOpenModalBooking: true,
+            dataScheduleTimeModal: time
+
+        })
+    }
+
+    //đóng modal
+    closeModelBooking = () => {
+        this.setState({
+            isOpenModalBooking: false,
+        })
+
+    }
+
     render() {
-        let { allDays, allAvailableTime } = this.state;
+        let { allDays, allAvailableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
         let { language } = this.props;
 
         return (
-            <div className='Doctor-schedule-container'>
-                <div className='all-schedule'>
-                    <select onChange={(event) => this.handleOnChangeSelect(event)}>
-                        {allDays && allDays.length > 0 &&
-                            allDays.map((item, index) => (
-                                <option value={item.value} key={index}>{item.label}</option>
-                            ))
-                        }
-                    </select>
-                </div>
-                <div className='all-available-time'>
-                    <div className='text-calendar my-3'>
-                        <span><i className="fa fa-calendar"> ĐẶT LỊCH HẸN</i></span>
+            <>
+                <div className='Doctor-schedule-container'>
+                    <div className='all-schedule'>
+                        <select onChange={(event) => this.handleOnChangeSelect(event)}>
+                            {allDays && allDays.length > 0 &&
+                                allDays.map((item, index) => (
+                                    <option value={item.value} key={index}>{item.label}</option>
+                                ))
+                            }
+                        </select>
                     </div>
-                    <div className='time-content-up'>
-                        {allAvailableTime && allAvailableTime.length > 0 ?
-                            <>
-                                <div className='time-content'>
-                                    {allAvailableTime.map((item, index) => {
-                                        let timeDisplay = language === LANGUAGES.VI ?
-                                            item.timeTypeData.valueVI : item.timeTypeData.valueEN;
+                    <div className='all-available-time'>
+                        <div className='text-calendar my-3'>
+                            <span><i className="fa fa-calendar"> ĐẶT LỊCH HẸN</i></span>
+                        </div>
+                        <div className='time-content-up'>
+                            {allAvailableTime && allAvailableTime.length > 0 ?
+                                <>
+                                    <div className='time-content'>
+                                        {allAvailableTime.map((item, index) => {
+                                            let timeDisplay = language === LANGUAGES.VI ?
+                                                item.timeTypeData.valueVI : item.timeTypeData.valueEN;
 
-                                        return (
-                                            <button key={index}>{timeDisplay}</button>
-                                        );
-                                    })}
-                                </div>
-                            </>
+                                            return (
+                                                <button key={index}
+                                                    onClick={() => this.handleClickScheduleTime(item)}
 
-                            :
-                            <div className='text-down'>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác. </div>
-                        }
+                                                >{timeDisplay}</button>
+                                            );
+                                        })}
+                                    </div>
+                                </>
+
+                                :
+                                <div className='text-down'>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác. </div>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+                <BookingModal
+                    isOpenModal={isOpenModalBooking}
+                    closeModelBooking={this.closeModelBooking}
+                    dataTime={dataScheduleTimeModal}
+
+                />
+            </>
+
         );
     }
 }
