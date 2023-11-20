@@ -33,5 +33,5 @@ export const YesNoObj = {
 export const USER_ROLE = {
     ADMIN: 'R1',
     STAFF: 'R2',
-    PATIENT: 'R3'
+    CLIENT: 'R3'
 }

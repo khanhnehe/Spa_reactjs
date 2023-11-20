@@ -112,6 +112,7 @@ class DoctorSchedule extends Component {
     handleClickScheduleTime = (time) => {
         this.setState({
             isOpenModalBooking: true,
+            //truyền time qua profileDoctor
             dataScheduleTimeModal: time
 
         })
@@ -172,6 +173,7 @@ class DoctorSchedule extends Component {
                 <BookingModal
                     isOpenModal={isOpenModalBooking}
                     closeModelBooking={this.closeModelBooking}
+                    // truyền qua booking -> profiledocrtor
                     dataTime={dataScheduleTimeModal}
 
                 />

@@ -5,8 +5,9 @@
         flex-direction: column;
 
         .booking-modal-header {
-            padding      : 10px;
-            border-bottom: 1px solid #ccc;
+            padding         : 10px;
+            background-color: #daffff;
+            border-radius   : 5px;
 
             .left {
                 font-size  : 15px;
@@ -21,12 +22,11 @@
         }
 
         .booking-modal-body {
-            height: 100%;
-            padding: 16px;
+            height : 100%;
+            padding: 10px 16px;
         }
 
         .booking-modal-footer {
-            border-top     : 1px solid #ccc;
             padding        : 10px;
             display        : flex;
             justify-content: flex-end;
@@ -34,7 +34,7 @@
 
             button {
                 border : none;
-                outline: none;           
+                outline: none;
 
             }
 
@@ -48,9 +48,9 @@
 
             .btn-booking-confirm {
                 background-color: #0d70fd;
-                color: white;
-                border-radius: 3px;
-                padding: 4px 12px;
+                color           : white;
+                border-radius   : 3px;
+                padding         : 4px 12px;
             }
         }
 

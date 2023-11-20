@@ -6,7 +6,8 @@ import { LANGUAGES } from "../../../utils"
 import { Modal } from 'reactstrap';
 //83
 import ProfileDoctor from '../Doctor/ProfileDoctor';
-import _ from 'lodash';
+import _ from 'lodash'
+    ;
 
 class BookingModal extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class BookingModal extends Component {
     render() {
 
         // toggle={}
-
+        //dataTime lấy tuè bên doctorSchedule
         let { isOpenModal, closeModelBooking, dataTime } = this.props;
         //83
 
@@ -67,12 +68,18 @@ class BookingModal extends Component {
                             <div className='doctor-infor'>
                                 <ProfileDoctor
                                     staffId={staffId}
+                                    //truyền qua bên profileDoctor
+                                    dataTime={dataTime}
                                 />
                             </div>
                             {/* <div className='price'> 500.000 VND</div> */}
                             <div className='row mt-3'>
                                 <div className='col-6 form-group mb-3'>
                                     <label>Họ tên: </label>
+                                    <input className='form-control'></input>
+                                </div>
+                                <div className='col-6 form-group mb-3'>
+                                    <label>Email: </label>
                                     <input className='form-control'></input>
                                 </div>
                                 <div className='col-6 form-group mb-3'>

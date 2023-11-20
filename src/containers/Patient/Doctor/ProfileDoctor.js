@@ -5,6 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../../utils"
 import { getProfileDoctorById } from '../../../services/userService';
 import NumberFormat from 'react-number-format';
+import _ from 'lodash';
+import moment from 'moment';
+
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -20,7 +23,7 @@ class ProfileDoctor extends Component {
         this.setState({
             dataProfile: data
         });
-        console.log('check data', data);
+        // console.log('check data', data);
     }
 
 
@@ -45,15 +48,36 @@ class ProfileDoctor extends Component {
         }
     }
 
+    //84 
+    //tách ra xử lý data thì sẽ dễ cover hơn
+    renderTimeBooking = (dataTime) => {
+        let { language } = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = dataTime.timeTypeData.valueVI;
+
+
+            //cover từ kiểu string sang kiểu date của js
+            let date = moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
+            return (
+                <>
+                    <div className='mt-2'>{time}  |  {date}</div>
+                </>
+            )
+        }
+
+
+    }
+
 
     render() {
-
+        //dataTime lấy bên booking
         let { dataProfile } = this.state;
-        let { language } = this.props;
+        let { language, dataTime } = this.props;
         let nameVI = ''
         if (dataProfile && dataProfile.positionData) {
             nameVI = `${dataProfile.positionData.valueVI}, ${dataProfile.lastName} ${dataProfile.firstName}`;
         }
+        console.log('check data', dataTime);
 
         return (
             <>
@@ -62,6 +86,7 @@ class ProfileDoctor extends Component {
                         <span className='text-custom'>
                             {nameVI}
                         </span>
+                        {this.renderTimeBooking(dataTime)}
                     </div>
                 </div>
 
