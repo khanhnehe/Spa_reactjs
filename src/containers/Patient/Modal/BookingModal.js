@@ -14,8 +14,9 @@ import { postPatientBookingAppointment } from '../../../services/userService';
 import { toast } from 'react-toastify'
 import DatePicker from '../../../components/Input/DatePicker';
 import { selectFilter } from 'react-bootstrap-table2-filter';
+import NumberFormat from 'react-number-format';
+import moment from 'moment';
 
-;
 
 class BookingModal extends Component {
     constructor(props) {
@@ -83,9 +84,25 @@ class BookingModal extends Component {
         })
     }
 
+    //87 buil truyền cho nodejs => để có thể lưu
+    buildTimeBooking = (dataTime) => {
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = dataTime.timeTypeData.valueVI;
+
+            //cover từ kiểu string sang kiểu date của js
+            let date = moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY');
+            return `${time}  |  ${date}`
+        }
+        return ''
+
+
+    }
+
     handleConfirmBooking = async () => {
         //validate Input trước 
         //data.email || data.staffId || data.timeType || data.date
+        let timeString = this.buildTimeBooking(this.props.dataTime);
+        let staffName = this.buildTimeBooking(this.props.dataTime)
         let res = await postPatientBookingAppointment({
             fullName: this.state.fullName,
             email: this.state.email,
@@ -93,7 +110,10 @@ class BookingModal extends Component {
             address: this.state.address,
             staffId: this.state.staffId,
             timeType: this.state.timeType,
+            timeString: timeString,
+            staffName: staffName
         })
+
 
         if (res && res.errCode === 0) {
             toast.success("Đặt lịch hẹn thành công!")
@@ -103,6 +123,8 @@ class BookingModal extends Component {
         }
 
     }
+
+
 
     render() {
 
