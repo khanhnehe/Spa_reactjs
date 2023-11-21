@@ -7,12 +7,28 @@ import { Modal } from 'reactstrap';
 //83
 import ProfileDoctor from '../Doctor/ProfileDoctor';
 import _ from 'lodash'
-    ;
+//85
+
+import * as actions from '../../../store/actions';
+import { postPatientBookingAppointment } from '../../../services/userService';
+import { toast } from 'react-toastify'
+import DatePicker from '../../../components/Input/DatePicker';
+import { selectFilter } from 'react-bootstrap-table2-filter';
+
+;
 
 class BookingModal extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            fullName: '',
+            email: '',
+            phoneNumber: '',
+            address: '',
+            staffId: '',
+            timeType: '',
+
+
 
         }
     }
@@ -21,14 +37,70 @@ class BookingModal extends Component {
 
     }
 
+    buildDateBirth = (data) => {
+        let result = [];
+        if (data && data.length > 0) {
+            data.map(item => {
+                let object = {};
+                object.label = item.valueVI;
+                object.value = item.keyMap;
+                result.push(object)
+
+            })
+        }
+        return result;
+    }
 
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.language !== prevProps.language) {
 
+        }
+
+        if (this.props.dataTime !== prevProps.dataTime) {
+            //hiện tại ss quá khứ => lấy hiện tại 
+            //ở đây nó chạy sau render khi nó thấy render khác thì nó bắt render lại
+            if (this.props.dataTime && !_.isEmpty(this.props.dataTime)) {
+                console.log('chẹck dataTime', this.props.dataTime)
+                let staffId = this.props.dataTime.staffId;
+                let timeType = this.props.dataTime.timeType;
+                this.setState({
+                    staffId: staffId,
+                    timeType: timeType,
+                })
+            }
+
+        }
 
     }
 
-    handleOnChangeSelect = async (event) => {
+    handleOnChangeInput = (event, id) => {
+        let valueInput = event.target.value;
+        let stateCopy = { ...this.state };
+        stateCopy[id] = valueInput;
+        this.setState({
+            ...stateCopy
+        })
+    }
+
+    handleConfirmBooking = async () => {
+        //validate Input trước 
+        //data.email || data.staffId || data.timeType || data.date
+        let res = await postPatientBookingAppointment({
+            fullName: this.state.fullName,
+            email: this.state.email,
+            phoneNumber: this.state.phoneNumber,
+            address: this.state.address,
+            staffId: this.state.staffId,
+            timeType: this.state.timeType,
+        })
+
+        if (res && res.errCode === 0) {
+            toast.success("Đặt lịch hẹn thành công!")
+            this.props.closeModelBooking();
+        } else {
+            toast.error('Đặt lịch không thành công, vui lòng đặt lại.');
+        }
 
     }
 
@@ -76,31 +148,43 @@ class BookingModal extends Component {
                             <div className='row mt-3'>
                                 <div className='col-6 form-group mb-3'>
                                     <label>Họ tên: </label>
-                                    <input className='form-control'></input>
+                                    <input className='form-control'
+                                        value={this.state.fullName}
+                                        onChange={(event) => this.handleOnChangeInput(event, 'fullName')}
+                                    ></input>
                                 </div>
                                 <div className='col-6 form-group mb-3'>
                                     <label>Email: </label>
-                                    <input className='form-control'></input>
+                                    <input className='form-control'
+                                        value={this.state.email}
+                                        onChange={(event) => this.handleOnChangeInput(event, 'email')}
+                                    ></input>
                                 </div>
                                 <div className='col-6 form-group mb-3'>
                                     <label>Số điện thoại: </label>
-                                    <input className='form-control'></input>
-                                </div>
-                                <div className='col-6 form-group mb-3'>
-                                    <label>Năm sinh: </label>
-                                    <input className='form-control'></input>
+                                    <input className='form-control'
+                                        value={this.state.phoneNumber}
+                                        onChange={(event) => this.handleOnChangeInput(event, 'phoneNumber')}
+                                    ></input>
                                 </div>
                                 <div className='col-12 form-group'>
                                     <label>Địa chỉ: </label>
-                                    <input className='form-control'></input>
+                                    <input className='form-control'
+                                        value={this.state.address}
+                                        onChange={(event) => this.handleOnChangeInput(event, 'address')}
+                                    ></input>
                                 </div>
 
                             </div>
                         </div>
                         <div className='booking-modal-footer'>
-                            <button className='btn-booking-confirm'>Xác nhận</button>
+                            <button className='btn-booking-confirm'
+                                onClick={() => this.handleConfirmBooking()}
+                            >Xác nhận</button>
 
-                            <button className='btn-booking-cancel'>Hủy</button>
+                            <button className='btn-booking-cancel'
+                                onClick={closeModelBooking}
+                            >Hủy</button>
 
                         </div>
 
