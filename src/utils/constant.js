@@ -5,7 +5,9 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     //69
-    DETAIL_DOCTOR: '/detail-doctor/:id'
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    //88 xác minh booking
+    VERIFY_EMAIL_BOOKING: '/verify-booking'
 };
 
 export const LANGUAGES = {

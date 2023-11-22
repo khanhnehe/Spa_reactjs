@@ -94,15 +94,26 @@ class BookingModal extends Component {
             return `${time}  |  ${date}`
         }
         return ''
+    }
 
+    buildDoctorName = (dataTime) => {
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let name = `${dataTime.staffData.lastName} ${dataTime.staffData.firstName} `;
+            return name
+        }
+        return ''
 
     }
+
 
     handleConfirmBooking = async () => {
         //validate Input trước 
         //data.email || data.staffId || data.timeType || data.date
+        //87
         let timeString = this.buildTimeBooking(this.props.dataTime);
-        let staffName = this.buildTimeBooking(this.props.dataTime)
+        let staffName = this.buildDoctorName(this.props.dataTime)
+        console.log('check staffName:', timeString, staffName)
+
         let res = await postPatientBookingAppointment({
             fullName: this.state.fullName,
             email: this.state.email,
@@ -141,7 +152,7 @@ class BookingModal extends Component {
         //cach 2 let staffId = dataTime && !_.isEmpty(dataTime) ? dataTime.staffId : '';
 
 
-        console.log("data props", this.props)
+        // console.log("data props", this.props)
         return (
             <>
                 <Modal isOpen={isOpenModal}
