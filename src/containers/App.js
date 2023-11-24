@@ -30,7 +30,8 @@ import Doctor from "../routes/Doctor";
 
 //88
 import VerifyEmail from "./Patient/VerifyEmail";
-
+//
+import Register from "./Auth/Register";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -69,6 +70,7 @@ class App extends Component {
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                   87
                   <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
+                  <Route path={path.LOG_OUT} component={Register} />
 
 
                 </Switch>

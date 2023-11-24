@@ -2,7 +2,8 @@ import actionTypes from "./actionTypes";
 import {
     getAllCodeService, createNewUserService, getAllUsers,
     deleteUserService, editUserService, getTopDoctorHomeService,
-    getAllDoctorService, saveDetailDoctor, getDetailInforDoctor
+    getAllDoctorService, saveDetailDoctor, getDetailInforDoctor,
+    getAllSpecialty
 
 } from '../../services/userService';
 import { toast } from "react-toastify";
@@ -389,6 +390,7 @@ export const fetchAllScheduleTime = () => {
 }
 
 //78 function này sẽ get các info của doctor
+//92 thêm specialty
 export const getRequiredDoctorInfor = () => {
     return async (dispatch, getState) => {
         try {
@@ -397,12 +399,15 @@ export const getRequiredDoctorInfor = () => {
             })
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
+            let resSpecialty = await getAllSpecialty()
 
             if (resPrice && resPrice.errCode === 0
-                && resPayment && resPayment.errCode === 0) {
+                && resPayment && resPayment.errCode === 0
+                && resSpecialty && resSpecialty.errCode === 0) {
                 let data = {
                     resPrice: resPrice.data,
-                    resPayment: resPayment.data
+                    resPayment: resPayment.data,
+                    resSpecialty: resSpecialty.data
                 }
                 dispatch(fetchRequiredDoctorSuccess(data))
             }

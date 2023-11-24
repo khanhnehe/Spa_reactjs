@@ -25,6 +25,20 @@ const appReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 userInfo: null
             }
+
+        //
+        case actionTypes.REGISTER_USER_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+                userInfo: action.userInfo,
+                registrationError: null,
+            };
+        case actionTypes.REGISTER_USER_FAIL:
+            return {
+                ...state,
+                registrationError: 'Đăng ký thất bại. Vui lòng thử lại.',
+            };
         default:
             return state;
     }

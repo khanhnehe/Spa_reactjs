@@ -7,7 +7,8 @@ import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 
 import { handleLoginApi } from "../../services/userService";
-
+import Register from "./Register";
+// import Register from "./Register";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +35,8 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
+    this.props.history.push(`/logout`);
+
     //trước khi gọi cái hàm handleLoginApi ấy thì ta cần setState tức ta sẽ clear những mã lỗi mà ta có trước đó
     this.setState({
       errMessage: ''
@@ -68,6 +71,12 @@ class Login extends Component {
       isShowPassword: !this.state.isShowPassword,
     });
   };
+
+  handleDk = () => {
+    this.props.history.push(`/logout`);
+
+  }
+
 
   render() {
     //JSX
@@ -120,7 +129,11 @@ class Login extends Component {
                   login
                 </button>
               </div>
-
+              <div className="col-md-12 mt-3 text-center"
+                onClick={() => this.handleDk()}
+              >
+                Đăng ký
+              </div>
             </div>
           </div>
         </div>

@@ -8,6 +8,11 @@ const handleLoginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', { email: userEmail, password: userPassword })
 }
 
+const handleRegister = (data) => {
+    console.log('check data from service: ', data);
+    return axios.post(`/api/post-create-new-user`, data);
+}
+
 const getAllUsers = (inputId) => {
     //template string
     return axios.get(`api/get-all-users?id=${inputId}`);
@@ -79,6 +84,16 @@ const postPatientBookingAppointment = (data) => {
 const postVerifyBookingAppointment = (data) => {
     return axios.post(`/api/verify-book-appointment`, data);
 }
+//90
+const createNewSpecialty = (data) => {
+    return axios.post(`/api/create-new-specialty`, data);
+}
+//91
+const getAllSpecialty = () => {
+    return axios.get(`/api/get-all-specialty`);
+}
+
+
 export {
     handleLoginApi,
     getAllUsers,
@@ -94,5 +109,6 @@ export {
     getScheduleByDate,
     getExtraDoctorInforById,
     getProfileDoctorById,
-    postPatientBookingAppointment, postVerifyBookingAppointment
+    postPatientBookingAppointment, postVerifyBookingAppointment, handleRegister,
+    createNewSpecialty, getAllSpecialty
 }

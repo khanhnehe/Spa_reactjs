@@ -17,7 +17,7 @@ class HomePage extends Component {
             <div>
                 <HomeHeader isShowBanner={true} />
 
-                <CarouseOne />
+                {/* <CarouseOne /> */}
 
                 <ClinicService />
                 <div style={{ height: '170px' }}></div>
@@ -53,6 +53,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+
     };
 };
 

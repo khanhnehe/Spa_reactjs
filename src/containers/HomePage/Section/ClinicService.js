@@ -8,10 +8,30 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Carouse from '../Carouse'
-
+import { getAllSpecialty } from '../../../services/userService';
 
 class ClinicService extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataSpecialty: []
+        }
+    }
+
+
+    //91
+    async componentDidMount() {
+        let res = await getAllSpecialty();
+        console.log('check specialty', res)
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataSpecialty: res.data ? res.data : []
+            })
+        }
+
+    }
+
 
     render() {
         let settings = {
@@ -24,6 +44,7 @@ class ClinicService extends Component {
             // prevArrow: <SamplePervArrow/>
         };
 
+        let { dataSpecialty } = this.state;
         return (
             <>
                 <div className='Section-Service'>
@@ -32,54 +53,25 @@ class ClinicService extends Component {
                         <div className='Service-body'>
 
                             <Slider {...settings}>
-                                <div className='Service-custom'>
-                                    <div className='bg-image1' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Giảm cân bằng công nghệ cao</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button>Đặt ngay</button>
-                                    </div>
+                                {dataSpecialty && dataSpecialty.length > 0 &&
+                                    dataSpecialty.map((item, index) => {
+                                        return (
+                                            <div className='Service-custom' key={index}>
+                                                {/* <div className='bg-image1' /> */}
+                                                <div className='Service-custom-down'>
+                                                    <div className='text-one'>{item.name}</div>
+                                                    <div className='gia'>Giá: {item.price} VND</div>
+                                                    <div className='time'><i className="fa fa-stethoscope"></i>
+                                                        1 lần | 60 phút</div>
+                                                    <button>Đặt ngay</button>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
 
 
-                                </div>
-                                <div className='Service-custom'>
-                                    <div className='bg-image2' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Combo Meso Mụn & Lấy Mụn 3in1</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button>Đặt ngay</button>
-                                    </div>
 
-                                </div>
-                                <div className='Service-custom'>
-                                    <div className='bg-image3' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Triệt Lông 1/2 Chân (Bảo Hành 5 Năm)</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button>Đặt ngay</button>
-                                    </div>
-
-
-                                </div>
-                                <div className='Service-custom'>
-                                    <div className='bg-image4' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Trẻ Hóa Da Bằng IPL</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button>Đặt ngay</button>
-                                    </div>
-
-
-                                </div>
-                                <div className='Service-custom'>
+                                {/* <div className='Service-custom'>
                                     <div className='bg-image5' />
                                     <div className='Service-custom-down'>
                                         <div className='text-one'>Meso trẻ hóa vùng cổ Fusion F XFC</div>
@@ -88,7 +80,7 @@ class ClinicService extends Component {
                                             1 lần | 60 phút</div>
                                         <button className='btn-custom'>Đặt ngay</button>
                                     </div>
-                                </div>
+                                </div> */}
 
 
                             </Slider>

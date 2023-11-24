@@ -5,6 +5,8 @@ import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from "../containers/Header/Header"
 import ManageStaff from '../containers/System/Admin/ManageStaff'
+//90
+import ManageSpecialty from '../containers/System/Spacialty/ManageSpecialty';
 class System extends Component {
     render() {
 
@@ -17,11 +19,14 @@ class System extends Component {
                 <div className="system-container">
                     <div className="system-list">
                         <Switch>
+                            {/* .lấy link bên menu app  */}
                             <Route path="/system/user-manage" component={UserManage} />
                             <Route path="/system/user-redux" component={UserRedux} />
                             {/* 66 */}
                             {/* 71 */}
                             <Route path="/system/manage-staff" component={ManageStaff} />
+                            {/* 90 */}
+                            <Route path="/system/manage-specialty" component={ManageSpecialty} />
 
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>

@@ -36,10 +36,10 @@ export const adminMenu = [
             },
         ]
     },
-    { //Quản lý gói Khám 
-        name: 'menu.admin.GoiKham', menus: [
+    { //Quản lý cẩm Gói khám 
+        name: 'menu.admin.specialty', menus: [
             {
-                name: 'menu.admin.manage-GoiKham', link: '/system/manage-GoiKham',
+                name: 'menu.admin.manage-specialty', link: '/system/manage-specialty',
             },
         ]
     },
@@ -50,6 +50,7 @@ export const adminMenu = [
             },
         ]
     },
+
 
 
 
@@ -72,4 +73,4 @@ export const doctorMenu = [
         ]
 
     }
-];
+]

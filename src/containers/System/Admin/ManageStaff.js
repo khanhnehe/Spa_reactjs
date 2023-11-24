@@ -8,6 +8,7 @@ import './ManageStaff.scss'
 import Select from 'react-select';
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils"
 import { getDetailInforDoctor } from '../../../services/userService';
+import { toast } from "react-toastify"
 
 // const options = [
 //     { value: 'chocolate', label: 'Chocolate' },
@@ -33,7 +34,10 @@ class ManageStaff extends Component {
             listPayment: [],
             selectedPrice: '',
             selectedPayment: '',
-            note: ''
+            //92
+            specialtyId: '',
+            listSpecialty: [],
+            selectedSpecialty: ''
 
         };
     }
@@ -81,6 +85,15 @@ class ManageStaff extends Component {
                     result.push(object);
                 })
             }
+            if (type === 'SPECIALTY') {
+                inputData.map((item, index) => {
+                    let object = {};
+                    //.name bên specialty
+                    object.label = item.name;
+                    object.value = item.id;
+                    result.push(object);
+                })
+            }
 
         }
 
@@ -101,14 +114,17 @@ class ManageStaff extends Component {
 
         if (prevProps.allRequireDoctorInfor !== this.props.allRequireDoctorInfor) {
             // console.log('get data redux', this.props.allRequireDoctorInfor)
-            let { resPrice, resPayment } = this.props.allRequireDoctorInfor;
-            let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE')
-            let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT')
+            let { resPrice, resPayment, resSpecialty } = this.props.allRequireDoctorInfor;
+            let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
+            let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
+            let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty, 'SPECIALTY');
+
             // console.log('get data new', dataSelectPrice, dataSelectPayment)
 
             this.setState({
                 listPrice: dataSelectPrice,
-                listPayment: dataSelectPayment
+                listPayment: dataSelectPayment,
+                listSpecialty: dataSelectSpecialty
             })
 
         }
@@ -120,7 +136,7 @@ class ManageStaff extends Component {
             this.setState({
                 listDoctor: dataSelect,
                 listPrice: dataSelectPrice,
-                listPayment: dataSelectPayment
+                listPayment: dataSelectPayment,
             })
         }
     }
@@ -134,6 +150,9 @@ class ManageStaff extends Component {
 
     handleSaveContentMarkdown = () => {
         let { hasOldData } = this.state;
+
+        // console.log('check state eContentMarkdown', this.state)
+        // return;
         this.props.saveInfoDetailDoctor({
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
@@ -144,7 +163,7 @@ class ManageStaff extends Component {
 
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
-            note: this.state.note
+            specialtyId: this.state.selectedSpecialty.value
         })
         // console.log('check state:', this.state)
 
@@ -164,7 +183,7 @@ class ManageStaff extends Component {
             let markdown = res.data.Markdown;
 
             //80 nếu có Staff_infor thì mới trả ra vì 1 số user có staff_infor = null
-            let priceId = '', paymentId = '', note = '', selectedPayment, selectedPrice;
+            let priceId = '', paymentId = '', selectedPayment = '', selectedPrice = '';
 
 
             if (res.data.Staff_infor) {
@@ -233,7 +252,7 @@ class ManageStaff extends Component {
 
     render() {
         //
-        let { hasOldData } = this.state
+        let { hasOldData, listSpecialty } = this.state
         console.log('check state', this.state)
         return (
             <div className='manage-staff-container mb-5'>
@@ -265,9 +284,22 @@ class ManageStaff extends Component {
                     </div>
                 </div>
                 {/* thêm tạo tt */}
-                <div className='row staff-infor-extra'>
-                    <div className='col-3 form-group ms-5'>
-                        <label>Chọn giá</label>
+
+
+                <div className='row staff-infor-extra px-5'>
+                    <div className='col-4 form-group '>
+                        <label className='text-up' >Chọn Tên dịch vụ:</label>
+                        <Select
+                            //79
+                            value={this.state.selectSpecialty}
+                            onChange={this.handleChangeSelectDoctorInfo}
+                            options={this.state.listSpecialty}
+                            placeholder={'Chọn tên dịch vụ'}
+                            name="selectedSpecialty"
+                        />
+                    </div>
+                    <div className='col-3 form-group '>
+                        <label className='text-up'>Chọn giá</label>
                         <Select
                             //79
                             value={this.state.selectedPrice}
@@ -278,8 +310,8 @@ class ManageStaff extends Component {
 
                         />
                     </div>
-                    < div className='col-4 form-group'>
-                        <label>Chọn phương thức thanh toán</label>
+                    < div className='col-3 form-group'>
+                        <label className='text-up'>Chọn phương thức thanh toán</label>
                         <Select
                             value={this.state.selectedPayment}
                             onChange={this.handleChangeSelectDoctorInfo}
@@ -287,15 +319,6 @@ class ManageStaff extends Component {
                             placeholder={'Chọn phương thức thanh toán'}
                             name={'selectedPayment'}
                         />
-                    </div>
-                    < div className='col-4 form-group'>
-                        <label>Note</label>
-                        <input className='form-control'
-                            onChange={(event) => this.handleChangeText(event, 'note')}
-                            value={this.state.note}
-                            placeholder={'Nhập thông tin vào...'}
-                        ></input>
-
                     </div>
 
                 </div>

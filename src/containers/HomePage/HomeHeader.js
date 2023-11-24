@@ -16,6 +16,8 @@ import { withRouter } from 'react-router';
 import { changeLanguageApp } from '../../store/actions/'
 
 
+import * as actions from "../../store/actions";
+
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {
@@ -28,10 +30,13 @@ class HomeHeader extends Component {
         }
 
     }
-
+    handleLoginRedirect = () => {
+        // Use the history object to navigate to the login page
+        this.props.history.push('/login');
+    };
     render() {
         //biến language này lấy từ trong redux lấy ở dưới ra á nhe chứ ko truyền từ cha sang con
-        let language = this.props.language;
+        let { language, processLogout } = this.props;
 
         return (
             <React.Fragment>
@@ -75,6 +80,9 @@ class HomeHeader extends Component {
                             <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
 
                             <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+                        </div>
+                        <div className="btn btn-login" onClick={this.handleLoginRedirect} title="Login">
+                            Login
                         </div>
                     </div>
                 </div>
@@ -135,6 +143,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        processLogout: () => dispatch(actions.processLogout()),
 
         changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
