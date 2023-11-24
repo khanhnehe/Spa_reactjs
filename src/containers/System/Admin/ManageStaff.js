@@ -154,6 +154,7 @@ class ManageStaff extends Component {
         // console.log('check state eContentMarkdown', this.state)
         // return;
         this.props.saveInfoDetailDoctor({
+
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,

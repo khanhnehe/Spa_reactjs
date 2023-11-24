@@ -7,7 +7,9 @@ export const path = {
     //69
     DETAIL_DOCTOR: '/detail-doctor/:id',
     //88 xác minh booking
-    VERIFY_EMAIL_BOOKING: '/verify-booking'
+    VERIFY_EMAIL_BOOKING: '/verify-booking',
+    //92
+    DETAIL_SPECIALTY: '/detail-specialty/:id'
 };
 
 export const LANGUAGES = {

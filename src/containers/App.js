@@ -32,6 +32,8 @@ import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
 //
 import Register from "./Auth/Register";
+//92
+import DetailSpecialty from "./Patient/Specialty/DetailSpecialty";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -68,8 +70,11 @@ class App extends Component {
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   {/* 69 */}
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
-                  87
+                  {/* 87 */}
                   <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
+                  {/* 92 */}
+                  <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
+
                   <Route path={path.LOG_OUT} component={Register} />
 
 

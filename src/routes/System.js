@@ -6,7 +6,7 @@ import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from "../containers/Header/Header"
 import ManageStaff from '../containers/System/Admin/ManageStaff'
 //90
-import ManageSpecialty from '../containers/System/Spacialty/ManageSpecialty';
+import ManageSpecialty from '../containers/System/Admin/ManageSpecialty';
 class System extends Component {
     render() {
 
