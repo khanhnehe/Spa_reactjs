@@ -32,20 +32,12 @@ class ClinicService extends Component {
             });
         }
     }
-<<<<<<< HEAD
 
     handleViewDetailSpecialty = (item, path) => {
         if (this.props.history) {
             this.props.history.push(`${path}`);
         }
     };
-=======
-    handleViewDetailSpecialty = (item) => {
-        if (this.props.history) {
-            this.props.history.push(`/detail-specialty/${item.id}`);
-        }
-    }
->>>>>>> bdc192a (92 ok)
 
     render() {
         let settings = {
@@ -54,10 +46,6 @@ class ClinicService extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-<<<<<<< HEAD
-=======
-
->>>>>>> bdc192a (92 ok)
         };
 
         let { dataSpecialty } = this.state;
@@ -73,15 +61,9 @@ class ClinicService extends Component {
                                         const { path, image } = this.fixedPaths[index] || {};
                                         return (
                                             <div className='Service-custom' key={index}
-<<<<<<< HEAD
                                                 onClick={() => this.handleViewDetailSpecialty(item, path)}
                                             >
                                                 <div className={image} />
-=======
-                                                onClick={() => this.handleViewDetailSpecialty(item)}
-                                            >
-                                                {/* <div className='bg-image1' /> */}
->>>>>>> bdc192a (92 ok)
                                                 <div className='Service-custom-down'>
                                                     <div className='text-one'>{item.name}</div>
                                                     <div className='gia'>Giá: {item.price} VND</div>

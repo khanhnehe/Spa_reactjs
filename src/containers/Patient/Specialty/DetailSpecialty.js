@@ -5,23 +5,20 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../../utils"
 import HomeHeader from '../../HomePage/HomeHeader';
 import { withRouter } from 'react-router';
-<<<<<<< HEAD
+
 //93
 import NumberFormat from 'react-number-format';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import DoctorExtraInfor from '../Doctor/DoctorExtraInfor';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
-=======
 
->>>>>>> bdc192a (92 ok)
 class DetailSpecialty extends Component {
     constructor(props) {
         super(props)
         this.state = {
-<<<<<<< HEAD
+
             arrDoctorId: [8, 10, 11]
-=======
->>>>>>> bdc192a (92 ok)
+
 
         }
     }
@@ -42,7 +39,7 @@ class DetailSpecialty extends Component {
     }
 
     render() {
-<<<<<<< HEAD
+
         let { arrDoctorId } = this.state;
         return (
             <>
@@ -81,12 +78,6 @@ class DetailSpecialty extends Component {
                 </div>
 
 
-=======
-        return (
-            <>
-                <HomeHeader />
-                <div>hello cccc</div>
->>>>>>> bdc192a (92 ok)
             </>
         );
     }
