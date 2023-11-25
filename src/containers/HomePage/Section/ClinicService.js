@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
 import { getAllSpecialty } from '../../../services/userService';
 import { withRouter } from 'react-router';
-import DetailSpecialty from '../../Patient/Specialty/DetailSpecialty';
 
 class ClinicService extends Component {
     constructor(props) {
@@ -21,8 +20,6 @@ class ClinicService extends Component {
         { path: "/detail-specialty/2", image: "bg-image2" },
         { path: "/detail-specialty/3", image: "bg-image3" },
         { path: "/detail-specialty/4", image: "bg-image4" },
-        { path: "/detail-specialty/5", image: "bg-image5" },
-        { path: "/detail-specialty/6", image: "bg-image6" },
         // Thêm các đường dẫn và ảnh khác nếu cần
     ];
 
