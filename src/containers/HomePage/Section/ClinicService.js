@@ -14,8 +14,16 @@ class ClinicService extends Component {
         };
     }
 
+    // Danh sách đường dẫn cố định và tên lớp CSS của ảnh
+    fixedPaths = [
+        { path: "/detail-specialty/1", image: "bg-image1" },
+        { path: "/detail-specialty/2", image: "bg-image2" },
+        { path: "/detail-specialty/3", image: "bg-image3" },
+        { path: "/detail-specialty/4", image: "bg-image4" },
+        { path: "/detail-specialty/5", image: "bg-image5" },
+        // Thêm các đường dẫn và ảnh khác nếu cần
+    ];
 
-    //91
     async componentDidMount() {
         let res = await getAllSpecialty();
         if (res && res.errCode === 0) {
