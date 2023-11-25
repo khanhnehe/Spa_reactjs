@@ -2,36 +2,44 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ClinicService.scss';
 import { FormattedMessage } from 'react-intl';
-import Slider from "react-slick"
-//import css files'
-// Import css files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+import Slider from "react-slick";
 import { getAllSpecialty } from '../../../services/userService';
+import { withRouter } from 'react-router';
+import DetailSpecialty from '../../Patient/Specialty/DetailSpecialty';
 
 class ClinicService extends Component {
-
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            dataSpecialty: []
-        }
+            dataSpecialty: [],
+        };
     }
 
+    // Danh sách đường dẫn cố định và tên lớp CSS của ảnh
+    fixedPaths = [
+        { path: "/detail-specialty/1", image: "bg-image1" },
+        { path: "/detail-specialty/2", image: "bg-image2" },
+        { path: "/detail-specialty/3", image: "bg-image3" },
+        { path: "/detail-specialty/4", image: "bg-image4" },
+        { path: "/detail-specialty/5", image: "bg-image5" },
+        { path: "/detail-specialty/6", image: "bg-image6" },
+        // Thêm các đường dẫn và ảnh khác nếu cần
+    ];
 
-    //91
     async componentDidMount() {
         let res = await getAllSpecialty();
-        console.log('check specialty', res)
         if (res && res.errCode === 0) {
             this.setState({
-                dataSpecialty: res.data ? res.data : []
-            })
+                dataSpecialty: res.data ? res.data : [],
+            });
         }
-
     }
 
+    handleViewDetailSpecialty = (item, path) => {
+        if (this.props.history) {
+            this.props.history.push(`${path}`);
+        }
+    };
 
     render() {
         let settings = {
@@ -40,8 +48,6 @@ class ClinicService extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-            // netArrow: <SampleNextArrow/>,
-            // prevArrow: <SamplePervArrow/>
         };
 
         let { dataSpecialty } = this.state;
@@ -51,64 +57,46 @@ class ClinicService extends Component {
                     <div className='Service-container'>
                         <span className='Service-title'>DICH VỤ NỔI BẬT</span>
                         <div className='Service-body'>
-
                             <Slider {...settings}>
                                 {dataSpecialty && dataSpecialty.length > 0 &&
                                     dataSpecialty.map((item, index) => {
+                                        const { path, image } = this.fixedPaths[index] || {};
                                         return (
-                                            <div className='Service-custom' key={index}>
-                                                {/* <div className='bg-image1' /> */}
+                                            <div className='Service-custom' key={index}
+                                                onClick={() => this.handleViewDetailSpecialty(item, path)}
+                                            >
+                                                <div className={image} />
                                                 <div className='Service-custom-down'>
                                                     <div className='text-one'>{item.name}</div>
                                                     <div className='gia'>Giá: {item.price} VND</div>
-                                                    <div className='time'><i className="fa fa-stethoscope"></i>
-                                                        1 lần | 60 phút</div>
-                                                    <button>Đặt ngay</button>
+                                                    <div className='time'>
+                                                        <i className="fa fa-stethoscope"></i> 1 lần | 60 phút
+                                                    </div>
+                                                    <button onClick={() => this.handleViewDetailSpecialty(item, path)}>
+                                                        Đặt ngay
+                                                    </button>
                                                 </div>
                                             </div>
-                                        )
+                                        );
                                     })}
-
-
-
-                                {/* <div className='Service-custom'>
-                                    <div className='bg-image5' />
-                                    <div className='Service-custom-down'>
-                                        <div className='text-one'>Meso trẻ hóa vùng cổ Fusion F XFC</div>
-                                        <div className='gia'>Giá: 500.000 VND</div>
-                                        <div className='time'><i className="fa fa-stethoscope"></i>
-                                            1 lần | 60 phút</div>
-                                        <button className='btn-custom'>Đặt ngay</button>
-                                    </div>
-                                </div> */}
-
-
                             </Slider>
                         </div>
-                    </div >
-
-                </div >
-
-
-
+                    </div>
+                </div>
             </>
         );
     }
-
 }
 
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-
-    };
+const mapDispatchToProps = (dispatch) => {
+    return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClinicService);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ClinicService));
