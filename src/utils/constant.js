@@ -4,8 +4,6 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system',
-    //
-    REGISTER: '/register',
     //69
     DETAIL_DOCTOR: '/detail-doctor/:id',
     //88 xác minh booking

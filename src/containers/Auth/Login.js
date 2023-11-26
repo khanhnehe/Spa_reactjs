@@ -35,7 +35,7 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    this.props.history.push(`/register`);
+    this.props.history.push(`/logout`);
 
     //trước khi gọi cái hàm handleLoginApi ấy thì ta cần setState tức ta sẽ clear những mã lỗi mà ta có trước đó
     this.setState({
@@ -73,7 +73,7 @@ class Login extends Component {
   };
 
   handleDk = () => {
-    this.props.history.push(`/register`);
+    this.props.history.push(`/logout`);
 
   }
 
@@ -85,10 +85,10 @@ class Login extends Component {
         <div className="login-background">
           <div className="login-container">
             <div className="login-content row p-4 p3">
-              <div className="col-md-12  login-title text-center ">Đăng nhập</div>
+              <div className="col-md-12  login-title text-center ">Login</div>
 
               <div className="col-md-12 login-input form-group">
-                <label className="">Email::</label>
+                <label className="">Username:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -99,7 +99,7 @@ class Login extends Component {
               </div>
 
               <div className="col-md-12 login-input form-group mt-4">
-                <label className="">Mật khẩu:</label>
+                <label className="">Password:</label>
                 <div className="custom-input-pas">
                   <input
                     type={this.state.isShowPassword ? "text" : "password"}
@@ -126,14 +126,14 @@ class Login extends Component {
                   onClick={() => {
                     this.handleLogin();
                   }}>
-                  Đăng nhập
+                  login
                 </button>
               </div>
-              <button className="col-md-12 mt-3 text-center"
+              <div className="col-md-12 mt-3 text-center"
                 onClick={() => this.handleDk()}
               >
                 Đăng ký
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -145,8 +145,6 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
-    isLoggedIn: state.user.isLoggedIn,
-
   };
 };
 

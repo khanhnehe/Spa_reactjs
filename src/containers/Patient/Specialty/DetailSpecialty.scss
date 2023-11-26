@@ -1,14 +1,10 @@
 .detail-specialty-container {
     .des-specialty {
-        order        : 1px solid lightgrey;
-        padding      : 15px 0;
-        background   : #ededed;
-        margin       : 20px 45px;
-        border-radius: 5px;
-        box-shadow   : 1px 1px 5px 0px #e3e3e3;
+        border: 1px solid red;
+        height: 300px;
+
     }
 
-    .search-doctor {}
 
     .each-doctor {
         display      : flex;

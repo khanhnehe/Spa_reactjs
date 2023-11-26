@@ -7,7 +7,6 @@ import localization from "moment/locale/vi"
 import { LANGUAGES } from "../../../utils"
 import { getScheduleByDate } from '../../../services/userService';
 import BookingModal from '../Modal/BookingModal'
-
 class DoctorSchedule extends Component {
     constructor(props) {
         super(props)
@@ -25,15 +24,6 @@ class DoctorSchedule extends Component {
     async componentDidMount() {
         let { language } = this.props;
         let allDays = this.getArrDays(language);
-        //fix lỗi ko load schedule
-        if (this.props.doctorIdFromParent) {
-            let res = await getScheduleByDate(this.props.doctorIdFromParent, allDays[0].value);
-            this.setState({
-                allAvailableTime: res.data ? res.data : []
-            })
-        }
-
-
         this.setState({
             allDays: allDays
         })
