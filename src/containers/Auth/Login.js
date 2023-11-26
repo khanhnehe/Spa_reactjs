@@ -8,7 +8,6 @@ import { FormattedMessage } from "react-intl";
 
 import { handleLoginApi } from "../../services/userService";
 import Register from "./Register";
-// import Register from "./Register";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +34,6 @@ class Login extends Component {
   };
 
   handleLogin = async () => {
-    this.props.history.push(`/register`);
-
     //trước khi gọi cái hàm handleLoginApi ấy thì ta cần setState tức ta sẽ clear những mã lỗi mà ta có trước đó
     this.setState({
       errMessage: ''
@@ -72,11 +69,10 @@ class Login extends Component {
     });
   };
 
-  handleDk = () => {
+  handleRegister = () => {
     this.props.history.push(`/register`);
 
   }
-
 
   render() {
     //JSX
@@ -88,11 +84,11 @@ class Login extends Component {
               <div className="col-md-12  login-title text-center ">Đăng nhập</div>
 
               <div className="col-md-12 login-input form-group">
-                <label className="">Email::</label>
+                <label className="">Email:</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Username"
+                  placeholder="Email của bạn"
                   value={this.state.username}
                   onChange={(event) => this.handleOnChangeInputUserName(event)}
                 ></input>
@@ -104,7 +100,7 @@ class Login extends Component {
                   <input
                     type={this.state.isShowPassword ? "text" : "password"}
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="Mật khẩu của bạn"
                     value={this.state.password}
                     onChange={(event) =>
                       this.handleOnChangeInputPassword(event)
@@ -129,11 +125,11 @@ class Login extends Component {
                   Đăng nhập
                 </button>
               </div>
-              <button className="col-md-12 mt-3 text-center"
-                onClick={() => this.handleDk()}
-              >
-                Đăng ký
-              </button>
+
+              <div
+                className="text-center text-primary mt-3"
+                onClick={() => { this.handleRegister() }}> Đăng ký</div>
+
             </div>
           </div>
         </div>
@@ -145,8 +141,6 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
-    isLoggedIn: state.user.isLoggedIn,
-
   };
 };
 

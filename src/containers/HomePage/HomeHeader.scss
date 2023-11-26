@@ -18,8 +18,8 @@
 
     .home-header-content {
         width  : 100%;
-        height : 100%;
-        padding: 0 20px;
+        height : 70px;
+        padding: 0 10px;
         display: flex;
 
         .left-content {
@@ -37,7 +37,7 @@
         }
 
         .center-content {
-            width          : 50%;
+            width          : 40%;
             display        : flex;
             align-items    : center;
             justify-content: space-between;
@@ -80,7 +80,7 @@
         }
 
         .right-content {
-            width          : 25%;
+            width          : 35%;
             display        : flex;
             align-items    : center;
             justify-content: space-evenly;
@@ -269,5 +269,39 @@
             }
         }
 
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+    .btn-login {
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+
+        .dropdown-item {
+            padding: 12px 16px;
+            display: block;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+
+    &:hover {
+        .dropdown-content {
+            display: block;
+        }
     }
 }

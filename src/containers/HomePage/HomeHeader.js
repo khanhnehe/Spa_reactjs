@@ -15,28 +15,67 @@ import { withRouter } from 'react-router';
 
 import { changeLanguageApp } from '../../store/actions/'
 
+import _ from 'lodash'
 
 import * as actions from "../../store/actions";
-
+import { USER_ROLE } from "../../utils/constant"
+import { adminMenu, doctorMenu } from '../../containers/Header/menuApp';
 class HomeHeader extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            // là cai menu render khi we chạy app 
+            menuApp: [],
+            isDropdownOpen: false,
+
+        }
+    }
+
+    componentDidMount() {
+        let userInfo = this.props.userInfo;
+        let menu = [];
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleId;
+            if (role === USER_ROLE.ADMIN) {
+                menu = adminMenu;
+
+            }
+            if (role === USER_ROLE.STAFF) {
+                menu = doctorMenu;
+
+            }
+        }
+
+        this.setState({
+            menuApp: menu
+        })
+    }
 
     changeLanguage = (language) => {
-        //fire redux event: actions
-        this.props.changeLanguageAppRedux(language)
-    }
+        this.props.changeLanguageAppRedux(language);
+    };
+
     returnToHome = () => {
         if (this.props.history) {
             this.props.history.push(`/home`);
         }
+    };
+
+    toggleDropdown = () => {
+        this.setState((prevState) => ({
+            isDropdownOpen: !prevState.isDropdownOpen,
+        }));
+    };
+
+    handleLogin = () => {
+        this.props.history.push('/login');
 
     }
-    handleLoginRedirect = () => {
-        // Use the history object to navigate to the login page
-        this.props.history.push('/login');
-    };
+
     render() {
         //biến language này lấy từ trong redux lấy ở dưới ra á nhe chứ ko truyền từ cha sang con
-        let { language, processLogout } = this.props;
+        const { language, userInfo } = this.props;
+        const { isDropdownOpen } = this.state;
 
         return (
             <React.Fragment>
@@ -66,9 +105,6 @@ class HomeHeader extends Component {
                             <div className='child-content'>
                                 <div><b>Giới thiệu</b></div>
                             </div>
-                            <div className='child-content'>
-                                <div><b>Bảng giá</b></div>
-                            </div>
 
                             <div className='child-content'>
                                 <div><b>Liên hệ</b></div>
@@ -80,10 +116,23 @@ class HomeHeader extends Component {
                             <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VI</span></div>
 
                             <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+
+                            <div className="dropdown" onClick={this.toggleDropdown}>
+                                <div className="btn btn-login" title="Login">
+                                    <i class="fa fa-user" aria-hidden="true"></i>                                </div>
+                                {isDropdownOpen && (
+                                    <div className="dropdown-content">
+                                        <div className="dropdown-item">Hello  {userInfo && userInfo.firstName ? userInfo.firstName : ''} !
+
+                                        </div>
+                                        <div className="dropdown-item" onClick={this.handleLogin}>
+                                            <i className="fas fa-sign-out-alt"></i>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <div className="btn btn-login" onClick={this.handleLoginRedirect} title="Login">
-                            Login
-                        </div>
+
                     </div>
                 </div>
                 {/* <Carouse /> */}
@@ -138,6 +187,8 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        userInfo: state.user.userInfo,
+
     };
 };
 

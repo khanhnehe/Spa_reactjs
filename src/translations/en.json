@@ -10,11 +10,11 @@
 
   "menu": {
     "admin": {
-      "manage-user": "System user",
+      "manage-user": "Manage",
       "manage-admin": "Admin management",
       "manage-staff": "Employee manager",
-      "crud": "CRUD user",
-      "crud-redux": "CRUD Redux",
+      "crud": "User",
+      "crud-redux": "User management",
 
       "phongKham": "Clinic",
       "manage-phongKham": "Clinic management",

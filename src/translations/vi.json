@@ -8,11 +8,11 @@
   },
   "menu": {
     "admin": {
-      "manage-user": "Người dùng",
+      "manage-user": "Quản lý",
       "manage-admin": "Quản lý admin",
       "manage-staff": "Quản lý nhân viên",
-      "crud": "CRUD user",
-      "crud-redux": "CRUD Redux",
+      "crud": "User",
+      "crud-redux": "Quản lý người dùng",
 
       "phongKham": "Phòng khám",
       "manage-phongKham": "Quản lý phòng khám",

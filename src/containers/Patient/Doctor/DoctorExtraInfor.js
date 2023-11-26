@@ -60,7 +60,7 @@ class DoctorExtraInfor extends Component {
                             {extraInfor && extraInfor.priceTypeData && language === LANGUAGES.VI
                                 && <NumberFormat
                                     value={extraInfor.priceTypeData.valueVI}
-                                    dispatchType={'text'}
+                                    dispatchtype={'text'}
                                     thousandSeparator={true}
                                     suffix={'VND'}
 

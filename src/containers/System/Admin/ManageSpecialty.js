@@ -85,7 +85,6 @@ class ManageSpecialty extends Component {
                 <div className='Manage-specialty-container'>
                     <div className='title'>QUẢN LÝ DỊCH VỤ</div>
                     <div className='btn-add-new-specialty'>
-                        add
                     </div>
                     <div className='row specialty-group px-5 '>
 

@@ -66,6 +66,7 @@ class DetailSpecialty extends Component {
     }
 
     handleOnChangeSelect = async (event) => {
+        console.log('check onchang', event.target.value)
 
     }
 

@@ -1,0 +1,45 @@
+.container{
+    height    : 200vh;
+
+    .register-container {
+        width        : 500px;
+        height       : 650px;
+        border-radius: 10px;
+        background   : white;
+        position     : absolute;
+        margin       : auto;
+        top          : 0;
+        bottom       : 0;
+        right        : 0;
+        left         : 0;
+        box-shadow   : 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    
+    
+        .register-title {
+            height                 : 100px;
+                    font-size              : 35px;
+                    line-height            : 100px;
+                    font-weight            : bold;
+                    background             : black;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+        }
+    }
+
+    label{
+        font-weight            : bold;
+
+    }
+   
+}
+
+
+.register-btn {
+    width        : 75%;
+    height       : 35px;
+    border       : 1px solid #fff;
+    border-radius: 6px;
+    background   : black;
+    
+
+}

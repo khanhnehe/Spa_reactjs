@@ -29,13 +29,13 @@ export const adminMenu = [
 
         ]
     },
-    { //Quản lý Phòng khám
-        name: 'menu.admin.phongKham', menus: [
-            {
-                name: 'menu.admin.manage-phongKham', link: '/system/manage-phongKham',
-            },
-        ]
-    },
+    // { //Quản lý Phòng khám
+    //     name: 'menu.admin.phongKham', menus: [
+    //         {
+    //             name: 'menu.admin.manage-phongKham', link: '/system/manage-phongKham',
+    //         },
+    //     ]
+    // },
     { //Quản lý cẩm Gói khám 
         name: 'menu.admin.specialty', menus: [
             {
