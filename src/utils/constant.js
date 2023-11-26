@@ -5,6 +5,7 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     //69
+    REGISTER: '/register',
     DETAIL_DOCTOR: '/detail-doctor/:id',
     //88 xác minh booking
     VERIFY_EMAIL_BOOKING: '/verify-booking',

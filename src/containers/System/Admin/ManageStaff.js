@@ -176,7 +176,7 @@ class ManageStaff extends Component {
         // console.log('check: ',  )
         this.setState({ selectedOption });
         //80 lấy ra payment và price fill vào infor
-        let { listPayment, listPrice } = this.state;
+        let { listPayment, listPrice, listSpecialty } = this.state;
 
 
         let res = await getDetailInforDoctor(selectedOption.value);
@@ -184,13 +184,16 @@ class ManageStaff extends Component {
             let markdown = res.data.Markdown;
 
             //80 nếu có Staff_infor thì mới trả ra vì 1 số user có staff_infor = null
-            let priceId = '', paymentId = '', selectedPayment = '', selectedPrice = '';
+            let priceId = '', paymentId = '', selectedPayment = '', selectedPrice = ''
+                , specialtyId = '', selectedSpecialty = '';
 
 
             if (res.data.Staff_infor) {
 
                 paymentId = res.data.Staff_infor.paymentId;
                 priceId = res.data.Staff_infor.priceId;
+                //94
+                specialtyId = res.data.Staff_infor.specialtyId;
 
                 selectedPayment = listPayment.find(item => {
                     return item && item.value === paymentId
@@ -198,8 +201,9 @@ class ManageStaff extends Component {
                 selectedPrice = listPrice.find(item => {
                     return item && item.value === priceId
                 })
-                // console.log('check findItem', selectedPayment, selectedPrice, listPayment, paymentId)
-
+                selectedSpecialty = listSpecialty.find(item => {
+                    return item && item.value === specialtyId
+                })
 
             }
 
@@ -211,7 +215,8 @@ class ManageStaff extends Component {
                 hasOldData: true,
                 //80 gán lại tt
                 selectedPayment: selectedPayment,
-                selectedPrice: selectedPrice
+                selectedPrice: selectedPrice,
+                selectedSpecialty: selectedSpecialty
 
             })
         }
@@ -292,7 +297,7 @@ class ManageStaff extends Component {
                         <label className='text-up' >Chọn Tên dịch vụ:</label>
                         <Select
                             //79
-                            value={this.state.selectSpecialty}
+                            value={this.state.selectedSpecialty}
                             onChange={this.handleChangeSelectDoctorInfo}
                             options={this.state.listSpecialty}
                             placeholder={'Chọn tên dịch vụ'}

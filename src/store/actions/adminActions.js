@@ -127,6 +127,7 @@ export const createNewUser = (data) => {
 
             else {
                 dispatch(saveUserFailed())
+                toast.error("Email đã tồn tại, vui lòng nhập email khác!");
             }
 
         } catch (e) {
