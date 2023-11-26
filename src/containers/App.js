@@ -75,7 +75,7 @@ class App extends Component {
                   {/* 92 */}
                   <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
 
-                  <Route path={path.LOG_OUT} component={Register} />
+                  <Route path={path.REGISTER} component={Register} />
 
 
                 </Switch>

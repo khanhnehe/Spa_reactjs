@@ -21,6 +21,8 @@ class ClinicService extends Component {
         { path: "/detail-specialty/3", image: "bg-image3" },
         { path: "/detail-specialty/4", image: "bg-image4" },
         { path: "/detail-specialty/5", image: "bg-image5" },
+        { path: "/detail-specialty/7", image: "bg-image6" },
+        { path: "/detail-specialty/8", image: "bg-image6" },
         // Thêm các đường dẫn và ảnh khác nếu cần
     ];
 

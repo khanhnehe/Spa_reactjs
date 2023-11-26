@@ -4,7 +4,7 @@ import './VerifyEmail.scss'
 import { FormattedMessage } from 'react-intl';
 import { postVerifyBookingAppointment } from '../../services/userService';
 import HomeHeader from '../HomePage/HomeHeader';
-
+import HomeFooter from '../HomePage/HomeFooter'
 
 class VerifyEmail extends Component {
     constructor(props) {

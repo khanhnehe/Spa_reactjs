@@ -50,7 +50,7 @@ class HomeHeader extends Component {
 
                         <div className='center-content'>
                             <div className='child-content'>
-                                <div><b><FormattedMessage id="homeheader.homepage" /></b></div>
+                                <div onClick={() => this.returnToHome()}><b><FormattedMessage id="homeheader.homepage" /></b></div>
                             </div>
                             <div className='child-content dropdown'>
                                 <div className="service-label"><b>Dịch vụ</b><i className="fas fa-caret-down"></i></div>

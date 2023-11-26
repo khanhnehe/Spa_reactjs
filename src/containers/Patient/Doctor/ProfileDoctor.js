@@ -7,7 +7,8 @@ import { getProfileDoctorById } from '../../../services/userService';
 import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import moment from 'moment';
-
+// điều hướng bằng link 95
+import { Link } from 'react-router-dom'
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -72,7 +73,8 @@ class ProfileDoctor extends Component {
     render() {
         //dataTime lấy bên booking
         let { dataProfile } = this.state;
-        let { language, dataTime } = this.props;
+        //94 xem chi tiết profile doctor staffId
+        let { language, dataTime, staffId } = this.props;
         let nameVI = ''
         if (dataProfile && dataProfile.positionData) {
             nameVI = `${dataProfile.positionData.valueVI}, ${dataProfile.lastName} ${dataProfile.firstName}`;
@@ -88,6 +90,11 @@ class ProfileDoctor extends Component {
                         </span>
                         {this.renderTimeBooking(dataTime)}
                     </div>
+
+                    <div className='view-detail-doctor'>
+                        <Link to={`/detail-doctor/${staffId}`}>xem thêm</Link>
+                    </div>
+
                 </div>
 
             </>

@@ -8,59 +8,79 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
-            isShowPassword: false,
-            errMessage: ''
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phonemumber: '',
+            address: ''
         };
     }
 
-    handleOnChangeInputUserName = (event) => {
+    handleOnChangeInput = (event, id) => {
+        //đầu tiên ta sẽ tạo 1 bản copy để copy state của we 
+        let copyState = { ...this.state };
+        copyState[id] = event.target.value;
         this.setState({
-            username: event.target.value,
+            ...copyState
         });
-    };
+    }
 
-    handleOnChangeInputPassword = (event) => {
-        this.setState({
-            password: event.target.value,
-        });
-    };
 
-    handleRegister = async () => {
-        // Before calling the createNewUserService function, clear any previous error messages.
-        this.setState({
-            errMessage: ''
-        });
+    checkValidateInput = () => {
+        //
+        let isValid = true
+        let arrInput = ['firstName', 'lastName', 'email', 'password', 'phonemumber', 'address'];
+        //dùng vòng for để có thể break dừng lặp đc
+        for (let i = 0; i < arrInput.length; i++) {
+            console.log('check inside loop: ', this.state[arrInput[i]], arrInput[i])
 
-        try {
-            // Dispatch the createNewUser action
-            await this.props.createNewUser({
-                username: this.state.username,
-                password: this.state.password
-            });
+            //nếu we ko điền giá trị vào thì ta return = false lun
+            if (!this.state[arrInput[i]]) {
+                isValid = false;
+                alert('Missing parameter: ' + arrInput[i]);
+                break;
 
-            // Check the user registration status
-            const { userRegistrationStatus } = this.props;
-            if (userRegistrationStatus === 'success') {
-                // If successful registration, navigate or handle as needed
-                console.log('Registration successful');
-            } else {
-                // If there's an error, set the error message in the state.
-                this.setState({
-                    errMessage: 'Registration failed. Please try again.'
-                });
             }
-        } catch (error) {
-            // Handle errors from the API or network.
-            console.error('Error during registration:', error);
-            this.setState({
-                errMessage: 'An error occurred during registration. Please try again.'
-            });
-        }
-    };
 
+        }
+        return isValid;
+    }
+
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.errCode !== 0) {
+                this.setState({ errorMessage: response.errMessage });
+            } else {
+                alert('thành công');
+
+            }
+        } catch (e) {
+            console.log(e)
+
+        }
+    }
+
+
+    handleAddNewUser = () => {
+        // mỗi lần ta nhấn Add new thì nó sẽ fire cái hàm checkValidateInput này cho we
+        let isValid = this.checkValidateInput();
+
+        //nếu dữ liệu hợp lệ ta call api create modal
+        if (isValid === true) {
+            this.props.createNewUser(this.state);
+        }
+
+    }
+
+    handleBackHome = () => {
+        this.props.history.push(`/home`);
+
+    }
     render() {
+
         return (
             <>
                 <div className="Register-background">
@@ -68,50 +88,72 @@ class Register extends Component {
                         <div className="Register-content row p-4 p3">
                             <div className="col-md-12  Register-title text-center ">Register</div>
 
-                            <div className="col-md-12 Register-input form-group">
-                                <label className="">Username:</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Username"
-                                    value={this.state.username}
-                                    onChange={(event) => this.handleOnChangeInputUserName(event)}
-                                ></input>
-                            </div>
-
-                            <div className="col-md-12 Register-input form-group mt-4">
-                                <label className="">Password:</label>
-                                <div className="custom-input-pas">
-                                    <input
-                                        type={this.state.isShowPassword ? "text" : "password"}
-                                        className="form-control"
-                                        placeholder="Password"
+                            <div className='modal-body'>
+                                <div className='input-container'>
+                                    <label>first name: </label>
+                                    <input type='text'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "firstName") }}
+                                        //set gía trị cho nó
+                                        //giá trị ở đây ta sẽ lấy theo state
+                                        value={this.state.firstName}
+                                    />
+                                </div>
+                                <div className='input-container'>
+                                    <label>Last name: </label>
+                                    <input type='text'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "lastName") }}
+                                        value={this.state.lastName}
+                                    ></input>
+                                </div>
+                                <div className='input-container '>
+                                    <label>Email: </label>
+                                    <input type='email'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "email") }}
+                                        value={this.state.email}
+                                    ></input>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Password: </label>
+                                    <input type='password'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "password") }}
                                         value={this.state.password}
-                                        onChange={(event) => this.handleOnChangeInputPassword(event)}
-                                    >
-                                    </input>
-                                    <span onClick={() => { this.handleShowHidePass(); }}>
-                                        <i className={this.state.isShowPassword ? "fa fa-eye" : "fa fa-eye-slash"}></i>
-                                    </span>
-
+                                    ></input>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Phone number: </label>
+                                    <input type='text'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "phonemumber") }}
+                                        value={this.state.phonemumber}
+                                    ></input>
+                                </div><div className='input-container max-input'>
+                                    <label>Address: </label>
+                                    <input type='text'
+                                        onChange={(event) => { this.handleOnChangeInput(event, "address") }}
+                                        value={this.state.address}
+                                    ></input>
                                 </div>
                             </div>
-
-                            <div className="col-md-12" style={{ color: 'red' }}>
-                                {this.state.errMessage}
-                            </div>
-                            <div>
-                                <button type="button" className="col-md-12 Register-btn mt-4 ms-5 text-light"
-                                    onClick={() => {
-                                        this.handleRegister();
-                                    }}>
-                                    Register
-                                </button>
-                            </div>
-
+                            <button type="button" className="col-md-12 Register-btn mt-4 ms-5 text-light"
+                                onClick={() => {
+                                    this.handleAddNewUser();
+                                }}>
+                                Register
+                            </button>
                         </div>
+
                     </div>
+                    <div className="col-md-12 mt-3 text-center text-danger"
+                        onClick={() => this.handleBackHome()}
+                    >
+                        quay lại trang đăng nhập
+                    </div>
+
                 </div>
+                {this.state.errorMessage && (
+                    <div className="error-message">
+                        {this.state.errorMessage}
+                    </div>
+                )}
             </>
         );
     }
@@ -121,12 +163,16 @@ const mapStateToProps = (state) => {
     return {
         language: state.app.language,
         userRegistrationStatus: state.user.registrationStatus,
+        isLoggedIn: state.user.isLoggedIn,
+
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        navigate: (path) => dispatch(push(path)),
+        processLogout: () => dispatch(actions.processLogout()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+
         createNewUser: (data) => dispatch(actions.createNewUser(data))
     };
 };
